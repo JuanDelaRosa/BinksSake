@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Bink's Sake"
 include(":app")
+include(":core:ui")

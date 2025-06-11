@@ -8,9 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.juandelarosa.binkssake.ui.theme.BinksSakeTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +20,21 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BinksSakeTheme {
+                val navController = rememberNavController()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    NavHost(
+                        navController = navController,
+                        startDestination = "home",
                         modifier = Modifier.padding(innerPadding)
-                    )
+                    ) {
+                        composable("home") {
+                            Text(
+                                text = "Hello!",
+                            )
+                        }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BinksSakeTheme {
-        Greeting("Android")
     }
 }

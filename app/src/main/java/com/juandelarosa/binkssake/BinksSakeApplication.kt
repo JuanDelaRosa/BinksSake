@@ -1,0 +1,15 @@
+package com.juandelarosa.binkssake
+
+import android.app.Application
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+
+class BinksSakeApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        startKoin {
+            androidContext(this@BinksSakeApplication)
+            modules(appModule)
+        }
+    }
+}
