@@ -1,6 +1,5 @@
-package com.juandelarosa.binkssake.ui.theme
+package binkssake.core.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

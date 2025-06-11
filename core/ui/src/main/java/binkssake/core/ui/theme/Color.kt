@@ -1,4 +1,4 @@
-package com.juandelarosa.binkssake.ui.theme
+package binkssake.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
