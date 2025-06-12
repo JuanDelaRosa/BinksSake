@@ -10,7 +10,7 @@ internal class SakeShopsDataSourceImpl(
 ) : SakeShopsDataSource {
 
     override suspend fun fetchSakeShops() =
-        safeJsonParse<SakeShopEntity> {
+        safeJsonParse<List<SakeShopEntity>> {
             api.fetchSakeShopsJson()
         }
 }

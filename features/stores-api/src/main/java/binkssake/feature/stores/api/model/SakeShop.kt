@@ -1,4 +1,4 @@
-package binksake.feature.stores.api.model
+package binkssake.feature.stores.api.model
 
 data class SakeShop(
     val name: String,

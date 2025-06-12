@@ -11,9 +11,10 @@ internal class SakeShopsRepositoryImpl(
 ) : SakeShopsRepository {
     override suspend fun fetchSakeShops() = when (val result = dataSource.fetchSakeShops()) {
         is Result.Success -> {
-            result.data.toDomain()?.let {
-                Result.Success(it)
-            } ?: Result.Error(Error("Failed to map SakeShopEntity to domain model"))
+            val mapResult = result.data.mapNotNull {
+                it.toDomain()
+            }
+            Result.Success(mapResult)
         }
         is Result.Error -> Result.Error(Error("Failed to fetch sake shops"))
     }

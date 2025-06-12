@@ -1,4 +1,4 @@
-package binksake.feature.stores.api
+package binkssake.feature.stores.api
 
 import androidx.fragment.app.Fragment
 

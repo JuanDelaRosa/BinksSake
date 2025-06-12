@@ -1,6 +1,6 @@
 package binkssake.feature.stores.data.mapper
 
-import binksake.feature.stores.api.model.SakeShop
+import binkssake.feature.stores.api.model.SakeShop
 import binkssake.feature.stores.data.model.SakeShopEntity
 
 internal fun SakeShopEntity.toDomain(): SakeShop? {

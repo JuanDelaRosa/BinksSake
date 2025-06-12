@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import binksake.feature.stores.api.StoresApi
+import binkssake.feature.stores.api.StoresApi
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {

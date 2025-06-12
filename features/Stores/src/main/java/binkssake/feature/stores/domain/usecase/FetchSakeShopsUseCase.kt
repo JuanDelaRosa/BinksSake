@@ -10,9 +10,8 @@ internal class FetchSakeShopsUseCase(
     private val repository: SakeShopsRepository = SakeShopsRepositoryImpl(),
     private val dispatcher: DispatchersProvider = DefaultDispatchersProvider()
 ) {
-    suspend operator fun invoke() {
+    suspend operator fun invoke() =
         withContext(dispatcher.io) {
             repository.fetchSakeShops()
         }
-    }
 }

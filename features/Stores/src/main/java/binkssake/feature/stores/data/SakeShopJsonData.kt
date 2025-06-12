@@ -18,9 +18,7 @@ internal class SakeShopJsonData {
     "rating": 4.0,
     "address": "〒380-0824 長野県長野市南長野南石堂町1421",
     "coordinates": [36.644257, 138.18668],
-    "google_maps_link": "https:
-    //maps.app.goo.gl/4fYMDSfNd6o
-    csDwt6",
+    "google_maps_link": "https://maps.app.goo.gl/4fYMDSfNd6ocsDwt6",
     "website": "https:
     //www.sushinano.c
     om/"
