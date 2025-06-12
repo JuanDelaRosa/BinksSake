@@ -15,6 +15,7 @@ navigationRuntimeAndroid = "2.9.0"
 fragmentKtx = "1.8.8"
 appcompat = "1.7.1"
 json = "1.6.3"
+uiToolingPreviewAndroid = "1.8.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +39,7 @@ androidx-navigation-runtime-android = { group = "androidx.navigation", name = "n
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "json" }
+androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

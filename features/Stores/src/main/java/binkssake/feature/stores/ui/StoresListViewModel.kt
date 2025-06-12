@@ -29,25 +29,29 @@ internal class StoresListViewModel(
         }
     }
 
-    override fun handleAction(action: Action) = when(action) {
+    override fun handleAction(action: Action) = when (action) {
         Action.FetchStores -> fetchSakeShops()
-        Action.BackClicked -> _effects += ViewEffect.CloseScreen
-        is Action.SakeShopSelected -> _effects += ViewEffect.OpenSakeShopDetails(action.sakeShopId)
+        Action.BackClicked -> _effects += ViewEffect.NavigateBack
+        is Action.SakeShopSelected -> {
+            _state.update { it.copy(selected = action.sakeShop) }
+            _effects += ViewEffect.OpenSakeShopDetails(action.sakeShop)
+        }
     }
 
     sealed interface ViewEffect {
-        data object CloseScreen : ViewEffect
-        data class OpenSakeShopDetails(val sakeShopId: String) : ViewEffect
+        data class OpenSakeShopDetails(val sakeShop: SakeShop) : ViewEffect
+        data object NavigateBack : ViewEffect
     }
 
     sealed interface Action {
         data object FetchStores : Action
         data object BackClicked : Action
-        data class SakeShopSelected(val sakeShopId: String) : Action
+        data class SakeShopSelected(val sakeShop: SakeShop) : Action
     }
 
     data class ViewState(
         val sakeShops: List<SakeShop> = emptyList(),
+        val selected: SakeShop? = null,
         val loading: Boolean = false,
         val showError: Boolean = false
     )
