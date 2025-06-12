@@ -8,12 +8,10 @@ plugins {
 apply(from = "${rootProject.projectDir}/gradle/android-library.gradle")
 
 android {
-    namespace = "binkssake.core.ui"
+    namespace = "binkssake.core.utils"
 }
 
 dependencies {
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.navigation.runtime.android)
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.navigation.compose.android)
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
 }

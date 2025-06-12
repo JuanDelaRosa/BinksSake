@@ -8,12 +8,13 @@ plugins {
 apply(from = "${rootProject.projectDir}/gradle/android-library.gradle")
 
 android {
-    namespace = "binkssake.core.ui"
+    namespace = "binkssake.feature.stores.di"
 }
 
 dependencies {
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.navigation.runtime.android)
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.navigation.compose.android)
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+
+    implementation(project(":features:stores"))
+    implementation(project(":features:stores-api"))
 }
