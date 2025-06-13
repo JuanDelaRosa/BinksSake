@@ -7,14 +7,11 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavHostController
 import binkssake.core.ui.theme.utils.setBinksSakeContent
 import binkssake.core.ui.viewmodel.viewModels
 import binkssake.feature.stores.ui.navigation.StoresNavigation
 
 internal class StoresFragment : Fragment() {
-
-    private lateinit var navController: NavHostController
 
     private val viewModel by viewModels {
         StoresViewModel()
