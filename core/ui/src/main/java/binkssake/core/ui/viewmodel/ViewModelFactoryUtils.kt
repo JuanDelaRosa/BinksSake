@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 
 
-@Suppress("UNCHECKED_CAST")
 class ViewModelFactory<VM : ViewModel>(private val creator: () -> VM) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T = creator() as T
 }

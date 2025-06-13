@@ -1,20 +1,40 @@
 package binkssake.feature.stores.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import binkssake.core.ui.compose.FeatureNavigation
+import binkssake.core.ui.navigation.navigateSafe
+import binkssake.core.ui.navigation.navigateUpOrFinish
+import binkssake.core.utils.extentions.requireFragmentActivity
 import binkssake.feature.stores.ui.StoreDetailScreen
 import binkssake.feature.stores.ui.StoresViewModel
 import binkssake.feature.stores.ui.StoresScreen
 
 @Composable
 internal fun StoresNavigation(
-    navController: NavHostController = rememberNavController(),
-    state: StoresViewModel.ViewState,
-    executeAction: (StoresViewModel.Action) -> Unit,
+    viewModel: StoresViewModel
 ) {
+    val navController = rememberNavController()
+    val state = viewModel.state.collectAsState().value
+    val activity = LocalContext.current.requireFragmentActivity()
+
+    LaunchedEffect(Unit) {
+        viewModel.effects.collect { effect ->
+            when (effect) {
+                is StoresViewModel.ViewEffect.OpenSakeShopDetails -> {
+                    navController.navigateSafe(StoreDetail.build(effect.index))
+                }
+                StoresViewModel.ViewEffect.NavigateBack -> {
+                    navController.navigateUpOrFinish(activity)
+                }
+            }
+        }
+    }
+
     FeatureNavigation(
         navController = navController,
         startDestination = ListOfStores.route,
@@ -22,7 +42,7 @@ internal fun StoresNavigation(
         composable(ListOfStores.route) {
             StoresScreen(
                 state = state,
-                executeAction = executeAction
+                executeAction = viewModel::executeAction
             )
         }
         composable(
@@ -32,7 +52,7 @@ internal fun StoresNavigation(
             val index = StoreDetail.extractIndex(backStackEntry)
             StoreDetailScreen(
                 store = state.sakeShops[index],
-                executeAction = executeAction
+                executeAction = viewModel::executeAction
             )
         }
     }

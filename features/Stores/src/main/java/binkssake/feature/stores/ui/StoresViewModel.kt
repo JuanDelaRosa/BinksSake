@@ -17,14 +17,11 @@ internal class StoresViewModel(
 
     private fun fetchSakeShops() {
         viewModelScope.launch {
-            _state.update { it.copy(loading = true) }
             when (val result = fetchSakeShopsUseCase()) {
                 is Result.Success -> {
-                    _state.update { it.copy(sakeShops = result.data, loading = false) }
+                    _state.update { it.copy(sakeShops = result.data) }
                 }
-                is Result.Error -> {
-                    _state.update { it.copy(loading = false, showError = true) }
-                }
+                is Result.Error -> Unit
             }
         }
     }
@@ -49,9 +46,7 @@ internal class StoresViewModel(
     }
 
     data class ViewState(
-        val sakeShops: List<SakeShop> = emptyList(),
-        val loading: Boolean = false,
-        val showError: Boolean = false
+        val sakeShops: List<SakeShop> = emptyList()
     )
 
     override fun createInitialState() = ViewState()

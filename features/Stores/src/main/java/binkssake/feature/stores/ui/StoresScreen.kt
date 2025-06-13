@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import binkssake.core.ui.compose.AsyncImage
 import binkssake.feature.stores.api.model.SakeShop
 
 @Composable
@@ -48,7 +49,6 @@ private fun StoreItem(store: SakeShop, onClick: () -> Unit) {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = store.name, style = MaterialTheme.typography.titleMedium)
-            Text(text = store.description, style = MaterialTheme.typography.bodyMedium)
             Text(text = "⭐ ${store.rating}", style = MaterialTheme.typography.labelSmall)
         }
     }
@@ -62,23 +62,28 @@ internal fun StoreDetailScreen(
     BackHandler {
         executeAction(StoresViewModel.Action.BackClicked)
     }
-    Column(modifier = Modifier.padding(16.dp)) {
-        Text(text = store.name, style = MaterialTheme.typography.headlineMedium)
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(text = store.description, style = MaterialTheme.typography.bodyLarge)
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(text = "Dirección: ${store.address}")
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(text = "Calificación: ${store.rating}")
-        Spacer(modifier = Modifier.height(8.dp))
-        if (!store.picture.isNullOrEmpty()) {
-            /* AsyncImage(
-                 model = store.picture,
-                 contentDescription = store.name,
-                 modifier = Modifier
-                     .fillMaxWidth()
-                     .height(200.dp)
-             )*/
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        elevation = CardDefaults.cardElevation()
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            store.picture?.let {
+                AsyncImage(
+                    imageUrl = it,
+                    modifier = Modifier.fillMaxWidth().height(200.dp),
+                )
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(text = store.name, style = MaterialTheme.typography.headlineMedium)
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(text = "⭐ ${store.rating}", style = MaterialTheme.typography.labelSmall)
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(text = store.description, style = MaterialTheme.typography.bodyLarge)
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(text = "Address: ${store.address}")
+            Spacer(modifier = Modifier.height(8.dp))
         }
     }
 }
