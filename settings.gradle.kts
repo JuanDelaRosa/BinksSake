@@ -21,3 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "Bink's Sake"
 include(":app")
+include(":core:ui")
+include(":features:stores")
+include(":features:stores-api")
+include(":features:stores-di")
+include(":core:utils")
