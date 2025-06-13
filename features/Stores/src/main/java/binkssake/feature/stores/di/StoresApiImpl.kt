@@ -2,10 +2,10 @@ package binkssake.feature.stores.di
 
 import androidx.fragment.app.Fragment
 import binkssake.feature.stores.api.StoresApi
-import binkssake.feature.stores.ui.StoresListFragment
+import binkssake.feature.stores.ui.StoresFragment
 
 class StoresApiImpl: StoresApi {
     override fun create(): Fragment {
-        return StoresListFragment.newInstance()
+        return StoresFragment.newInstance()
     }
 }

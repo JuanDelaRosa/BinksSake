@@ -5,13 +5,13 @@ import binkssake.feature.stores.api.model.SakeShop
 import binkssake.core.ui.viewmodel.MviViewModel
 import binkssake.core.utils.json.Result
 import binkssake.feature.stores.domain.usecase.FetchSakeShopsUseCase
-import binkssake.feature.stores.ui.StoresListViewModel.Action
-import binkssake.feature.stores.ui.StoresListViewModel.ViewEffect
-import binkssake.feature.stores.ui.StoresListViewModel.ViewState
+import binkssake.feature.stores.ui.StoresViewModel.Action
+import binkssake.feature.stores.ui.StoresViewModel.ViewEffect
+import binkssake.feature.stores.ui.StoresViewModel.ViewState
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-internal class StoresListViewModel(
+internal class StoresViewModel(
     private val fetchSakeShopsUseCase: FetchSakeShopsUseCase = FetchSakeShopsUseCase()
 ) : MviViewModel<ViewState, ViewEffect, Action>() {
 
@@ -33,25 +33,23 @@ internal class StoresListViewModel(
         Action.FetchStores -> fetchSakeShops()
         Action.BackClicked -> _effects += ViewEffect.NavigateBack
         is Action.SakeShopSelected -> {
-            _state.update { it.copy(selected = action.sakeShop) }
-            _effects += ViewEffect.OpenSakeShopDetails(action.sakeShop)
+            _effects += ViewEffect.OpenSakeShopDetails(action.index)
         }
     }
 
     sealed interface ViewEffect {
-        data class OpenSakeShopDetails(val sakeShop: SakeShop) : ViewEffect
+        data class OpenSakeShopDetails(val index: Int) : ViewEffect
         data object NavigateBack : ViewEffect
     }
 
     sealed interface Action {
         data object FetchStores : Action
         data object BackClicked : Action
-        data class SakeShopSelected(val sakeShop: SakeShop) : Action
+        data class SakeShopSelected(val index: Int) : Action
     }
 
     data class ViewState(
         val sakeShops: List<SakeShop> = emptyList(),
-        val selected: SakeShop? = null,
         val loading: Boolean = false,
         val showError: Boolean = false
     )

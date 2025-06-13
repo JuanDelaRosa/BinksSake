@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -21,18 +21,24 @@ import binkssake.feature.stores.api.model.SakeShop
 
 @Composable
 internal fun StoresScreen(
-    state: StoresListViewModel.ViewState,
-    executeAction: (StoresListViewModel.Action) -> Unit,
+    state: StoresViewModel.ViewState,
+    executeAction: (StoresViewModel.Action) -> Unit,
 ) {
+    BackHandler {
+        executeAction(StoresViewModel.Action.BackClicked)
+    }
     LazyColumn {
-        items(state.sakeShops) { store ->
-            StoreItem(store = store, onClick = { executeAction(StoresListViewModel.Action.SakeShopSelected(store)) })
+        itemsIndexed(state.sakeShops) { index, store ->
+            StoreItem(
+                store = store,
+                onClick = { executeAction(StoresViewModel.Action.SakeShopSelected(index)) }
+            )
         }
     }
 }
 
 @Composable
-fun StoreItem(store: SakeShop, onClick: () -> Unit) {
+private fun StoreItem(store: SakeShop, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -50,8 +56,12 @@ fun StoreItem(store: SakeShop, onClick: () -> Unit) {
 
 @Composable
 internal fun StoreDetailScreen(
-    store: SakeShop
+    store: SakeShop,
+    executeAction: (StoresViewModel.Action) -> Unit,
 ) {
+    BackHandler {
+        executeAction(StoresViewModel.Action.BackClicked)
+    }
     Column(modifier = Modifier.padding(16.dp)) {
         Text(text = store.name, style = MaterialTheme.typography.headlineMedium)
         Spacer(modifier = Modifier.height(8.dp))
@@ -62,13 +72,13 @@ internal fun StoreDetailScreen(
         Text(text = "Calificación: ${store.rating}")
         Spacer(modifier = Modifier.height(8.dp))
         if (!store.picture.isNullOrEmpty()) {
-           /* AsyncImage(
-                model = store.picture,
-                contentDescription = store.name,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-            )*/
+            /* AsyncImage(
+                 model = store.picture,
+                 contentDescription = store.name,
+                 modifier = Modifier
+                     .fillMaxWidth()
+                     .height(200.dp)
+             )*/
         }
     }
 }
@@ -98,7 +108,7 @@ fun StoresScreenPreview() {
             website = "https://sakeshop2.example.com"
         )
     )
-    StoresScreen(state = StoresListViewModel.ViewState(sakeShops = sampleStores), executeAction = {})
+    StoresScreen(state = StoresViewModel.ViewState(sakeShops = sampleStores), executeAction = {})
 }
 
 @Preview
@@ -114,5 +124,5 @@ fun StoreDetailScreenPreview() {
         googleMapsLink = "https://maps.google.com/?q=35.6895,139.6917",
         website = "https://sakeshop1.example.com"
     )
-    StoreDetailScreen(store = sampleStore)
+    StoreDetailScreen(store = sampleStore, executeAction = {} )
 }
