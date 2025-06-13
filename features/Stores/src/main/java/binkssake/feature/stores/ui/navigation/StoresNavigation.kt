@@ -1,5 +1,7 @@
 package binkssake.feature.stores.ui.navigation
 
+import android.content.Intent
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -13,6 +15,7 @@ import binkssake.core.utils.extentions.requireFragmentActivity
 import binkssake.feature.stores.ui.StoreDetailScreen
 import binkssake.feature.stores.ui.StoresViewModel
 import binkssake.feature.stores.ui.StoresScreen
+import androidx.core.net.toUri
 
 @Composable
 internal fun StoresNavigation(
@@ -30,6 +33,14 @@ internal fun StoresNavigation(
                 }
                 StoresViewModel.ViewEffect.NavigateBack -> {
                     navController.navigateUpOrFinish(activity)
+                }
+                is StoresViewModel.ViewEffect.OpenAddressInMaps -> {
+                    val intent = Intent(Intent.ACTION_VIEW, effect.address.toUri())
+                    activity.startActivity(intent)
+                }
+                is StoresViewModel.ViewEffect.OpenWebsite -> {
+                    val customTabsIntent = CustomTabsIntent.Builder().build()
+                    customTabsIntent.launchUrl(activity, effect.website.toUri())
                 }
             }
         }
@@ -57,5 +68,3 @@ internal fun StoresNavigation(
         }
     }
 }
-
-

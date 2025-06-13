@@ -6,7 +6,6 @@ data class SakeShop(
     val picture: String?,
     val rating: Double,
     val address: String,
-    val coordinates: Pair<Double, Double>,
     val googleMapsLink: String,
     val website: String
 )

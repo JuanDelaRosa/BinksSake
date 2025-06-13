@@ -21,8 +21,16 @@ dependencies {
     implementation(project(":core:utils"))
     implementation(project(":features:stores-api"))
     implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.navigation.runtime.android)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose.android)
-    implementation(libs.androidx.ui.tooling.preview.android)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.compose.material.icons.extended)
+    implementation(libs.androidx.browser)
+    debugImplementation(libs.ui.tooling)
+    testImplementation(libs.junit)
+    testImplementation(libs.test.turbine)
+    testImplementation(libs.test.kotest)
+    testImplementation(libs.test.kotlin.coroutines)
+    testImplementation(libs.test.mockito.kotlin)
+
 }

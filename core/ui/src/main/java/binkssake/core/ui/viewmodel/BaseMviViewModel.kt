@@ -23,7 +23,7 @@ abstract class BaseMviViewModel<State, Action> : ViewModel() {
     val state: StateFlow<State> by lazy { _state.asStateFlow() }
 
     fun executeAction(action: Action) {
-        Log.i(TAG, "Action: ${action?.let { it::class.java.name } ?: "?"}")
+        //Log.i(TAG, "Action: ${action?.let { it::class.java.name } ?: "?"}")
         handleAction(action)
     }
 
@@ -52,7 +52,8 @@ abstract class BaseMviViewModel<State, Action> : ViewModel() {
             block()
         } catch (e: Exception) {
             ensureActive()
-            e.message?.let { Log.e(TAG, it) }
+            e.message?.let { //Log.e(TAG, it)
+            }
         }
     }
 

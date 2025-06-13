@@ -38,7 +38,6 @@ fun AsyncImage(
         )
         when(painter.state) {
             is AsyncImagePainter.State.Loading -> {
-                println("Image state: ${painter.state}")
                 CircularProgressIndicator(
                     modifier = Modifier
                         .align(Alignment.Center)

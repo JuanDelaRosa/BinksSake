@@ -10,14 +10,16 @@ activityCompose = "1.10.1"
 composeBom = "2025.06.00"
 navigationComposeAndroid = "2.9.0"
 koin = "4.0.4"
-jetbrainsKotlinJvm = "2.0.21"
-navigationRuntimeAndroid = "2.9.0"
 fragmentKtx = "1.8.8"
 appcompat = "1.7.1"
 json = "1.6.3"
-uiToolingPreviewAndroid = "1.8.2"
 coil = "2.4.0"
-
+icons-extended = "1.6.1"
+customtabs = "1.6.0"
+uiTooling = "1.8.2"
+mockito-kotlin = "5.4.0"
+turbine = "0.12.1"
+kotest = "5.5.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -37,18 +39,22 @@ androidx-navigation-compose-android = { group = "androidx.navigation", name = "n
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
-androidx-navigation-runtime-android = { group = "androidx.navigation", name = "navigation-runtime-android", version.ref = "navigationRuntimeAndroid" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "json" }
-androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "icons-extended" }
+androidx-browser = { module = "androidx.browser:browser", version.ref = "customtabs" }
+ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+test-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test" }
+test-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin" }
+test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+test-kotest = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 android-library = { id = "com.android.library" }
 kotlin-parcelize = { id = "kotlin-parcelize" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

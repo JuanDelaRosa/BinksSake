@@ -14,7 +14,6 @@ android {
 dependencies {
     implementation(project(":core:utils"))
     implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.navigation.runtime.android)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose.android)
     implementation(libs.coil.compose)
