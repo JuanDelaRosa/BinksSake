@@ -11,7 +11,6 @@ activityCompose = "1.10.1"
 composeBom = "2025.06.00"
 navigationComposeAndroid = "2.9.0"
 hilt = "2.51.1"
-material = "1.12.0"
 fragmentKtx = "1.8.8"
 appcompat = "1.7.1"
 json = "1.6.3"
@@ -39,12 +38,12 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-navigation-compose-android = { group = "androidx.navigation", name = "navigation-compose-android", version.ref = "navigationComposeAndroid" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version = "1.2.0" }
 dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-android-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "json" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "icons-extended" }
@@ -54,6 +53,7 @@ test-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-te
 test-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin" }
 test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 test-kotest = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+android-material = { group = "com.google.android.material", name = "material", version = "1.12.0" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

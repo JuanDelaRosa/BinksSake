@@ -6,7 +6,7 @@ import akibaroom.feature.stores.data.mapper.toDomain
 import akibaroom.feature.stores.domain.datasource.SakeShopsDataSource
 import akibaroom.feature.stores.domain.repository.SakeShopsRepository
 
-internal class SakeShopsRepositoryImpl(
+class SakeShopsRepositoryImpl(
     private val dataSource: SakeShopsDataSource = SakeShopsDataSourceImpl()
 ) : SakeShopsRepository {
     override suspend fun fetchSakeShops() = when (val result = dataSource.fetchSakeShops()) {

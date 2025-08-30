@@ -8,11 +8,14 @@ import akibaroom.feature.stores.domain.usecase.FetchSakeShopsUseCase
 import akibaroom.feature.stores.ui.StoresViewModel.Action
 import akibaroom.feature.stores.ui.StoresViewModel.ViewEffect
 import akibaroom.feature.stores.ui.StoresViewModel.ViewState
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-internal class StoresViewModel(
-    private val fetchSakeShopsUseCase: FetchSakeShopsUseCase = FetchSakeShopsUseCase()
+@HiltViewModel
+internal class StoresViewModel @Inject constructor(
+    private val fetchSakeShopsUseCase: FetchSakeShopsUseCase
 ) : MviViewModel<ViewState, ViewEffect, Action>() {
 
     private fun fetchSakeShops() {

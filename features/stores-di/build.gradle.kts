@@ -19,4 +19,5 @@ dependencies {
 
     implementation(project(":features:stores"))
     implementation(project(":features:stores-api"))
+    implementation(project(":core:utils"))
 }

@@ -6,7 +6,7 @@ import akibaroom.feature.stores.data.repository.SakeShopsRepositoryImpl
 import akibaroom.feature.stores.domain.repository.SakeShopsRepository
 import kotlinx.coroutines.withContext
 
-internal class FetchSakeShopsUseCase(
+class FetchSakeShopsUseCase(
     private val repository: SakeShopsRepository = SakeShopsRepositoryImpl(),
     private val dispatcher: DispatchersProvider = DefaultDispatchersProvider()
 ) {

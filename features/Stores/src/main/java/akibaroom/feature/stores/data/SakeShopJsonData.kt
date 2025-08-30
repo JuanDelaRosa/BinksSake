@@ -1,6 +1,6 @@
 package akibaroom.feature.stores.data
 
-internal class SakeShopJsonData {
+class SakeShopJsonData {
 
     fun fetchSakeShopsJson(): String {
         return json

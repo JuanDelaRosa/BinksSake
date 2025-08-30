@@ -5,7 +5,7 @@ import akibaroom.feature.stores.data.SakeShopJsonData
 import akibaroom.feature.stores.data.model.SakeShopEntity
 import akibaroom.feature.stores.domain.datasource.SakeShopsDataSource
 
-internal class SakeShopsDataSourceImpl(
+class SakeShopsDataSourceImpl(
     private val api: SakeShopJsonData = SakeShopJsonData()
 ) : SakeShopsDataSource {
 

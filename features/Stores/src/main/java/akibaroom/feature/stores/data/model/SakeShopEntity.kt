@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class SakeShopEntity(
+data class SakeShopEntity(
     val name: String? = null,
     val description: String? = null,
     val picture: String? = null,
