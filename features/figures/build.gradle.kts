@@ -11,7 +11,7 @@ plugins {
 apply(from = "${rootProject.projectDir}/gradle/android-library.gradle")
 
 android {
-    namespace = "akibaroom.feature.stores"
+    namespace = "akibaroom.feature.figures"
 
     buildFeatures {
         compose = true
@@ -22,6 +22,8 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:utils"))
     implementation(project(":features:figures-api"))
+    implementation(project(":core:network"))
+    implementation(libs.retrofit.core)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
@@ -30,6 +32,7 @@ dependencies {
     implementation(libs.compose.material.icons.extended)
     implementation(libs.androidx.browser)
     implementation(libs.dagger.hilt.android)
+    implementation(libs.kotlinx.coroutines.core)
     kapt(libs.dagger.hilt.compiler)
     debugImplementation(libs.ui.tooling)
     testImplementation(libs.test.junit4)
@@ -38,4 +41,8 @@ dependencies {
     testImplementation(libs.test.kotlin.coroutines)
     testImplementation(libs.test.mockito.kotlin)
 
+}
+
+kapt {
+    correctErrorTypes = true
 }

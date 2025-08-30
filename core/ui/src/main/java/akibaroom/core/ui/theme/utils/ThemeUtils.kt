@@ -1,15 +1,8 @@
 package akibaroom.core.ui.theme.utils
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.ComposeView
-import akibaroom.core.ui.theme.AkibaRoomTheme
+import androidx.compose.ui.graphics.Color
 
-fun ComposeView.setAkibaRoomContent(
-    content: @Composable () -> Unit
-) {
-    setContent {
-        AkibaRoomTheme {
-            content()
-        }
-    }
-}
+@Composable
+fun surfaceColorAtElevation(): Color = MaterialTheme.colorScheme.surface
