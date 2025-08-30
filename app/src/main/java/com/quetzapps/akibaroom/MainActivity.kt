@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import akibaroom.core.ui.theme.AkibaRoomTheme
-import akibaroom.feature.stores.api.StoresApi
+import akibaroom.feature.figures.api.StoresApi
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

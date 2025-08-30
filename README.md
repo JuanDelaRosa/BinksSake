@@ -22,7 +22,7 @@ A modular Android app to browse local Sake Shops built with Jetpack Compose, Cle
   - `core`: Shared UI, utilities, and base viewmodel classes
   - `app`: Entry point and dependency wiring
   - `feature:stores`: Implements list and detail of sake shops
-  - `feature:stores-api`: Public models and navigation contracts
+  - `feature:figures-api`: Public models and navigation contracts
 
 - **Libraries Used**:
   - `Jetpack Compose`
