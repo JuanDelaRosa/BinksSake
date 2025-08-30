@@ -9,10 +9,9 @@ plugins {
 apply(from = "${rootProject.projectDir}/gradle/android-library.gradle")
 
 android {
-    namespace = "binkssake.core.utils"
+    namespace = "akibaroom.core.utils"
 }
 
 dependencies {
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.androidx.fragment.ktx)
 }

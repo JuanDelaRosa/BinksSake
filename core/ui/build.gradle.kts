@@ -8,7 +8,7 @@ plugins {
 apply(from = "${rootProject.projectDir}/gradle/android-library.gradle")
 
 android {
-    namespace = "binkssake.core.ui"
+    namespace = "akibaroom.core.ui"
 }
 
 dependencies {

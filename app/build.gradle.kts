@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.juandelarosa.binkssake"
+    namespace = "com.quetzapps.akibaroom"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.juandelarosa.binkssake"
+        applicationId = "com.quetzapps.akibaroom"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

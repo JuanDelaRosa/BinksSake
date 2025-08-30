@@ -8,7 +8,7 @@ plugins {
 apply(from = "${rootProject.projectDir}/gradle/android-library.gradle")
 
 android {
-    namespace = "binkssake.feature.stores.api"
+    namespace = "akibaroom.feature.stores.api"
 }
 
 dependencies {

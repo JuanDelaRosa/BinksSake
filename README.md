@@ -1,4 +1,4 @@
-# Bink's Sake 🍶  
+# akibaroom 🍶  
 A modular Android app to browse local Sake Shops built with Jetpack Compose, Clean Architecture, and Kotlin.
 
 ## 📱 Features

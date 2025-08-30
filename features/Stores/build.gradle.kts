@@ -9,7 +9,7 @@ plugins {
 apply(from = "${rootProject.projectDir}/gradle/android-library.gradle")
 
 android {
-    namespace = "binkssake.feature.stores"
+    namespace = "akibaroom.feature.stores"
 
     buildFeatures {
         compose = true

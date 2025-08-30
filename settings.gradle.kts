@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Bink's Sake"
+rootProject.name = "AkibaRoom"
 include(":app")
 include(":core:ui")
 include(":features:stores")
