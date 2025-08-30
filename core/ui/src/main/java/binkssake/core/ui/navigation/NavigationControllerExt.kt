@@ -1,9 +1,9 @@
 package binkssake.core.ui.navigation
 
-import androidx.fragment.app.FragmentActivity
+import android.app.Activity
 import androidx.navigation.NavController
 
-fun NavController.navigateUpOrFinish(activity: FragmentActivity): Boolean {
+fun NavController.navigateUpOrFinish(activity: Activity): Boolean {
     if (!navigateUp()) activity.finish()
     return true
 }

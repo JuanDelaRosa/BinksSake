@@ -11,7 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import binkssake.core.ui.compose.FeatureNavigation
 import binkssake.core.ui.navigation.navigateSafe
 import binkssake.core.ui.navigation.navigateUpOrFinish
-import binkssake.core.utils.extentions.requireFragmentActivity
+import binkssake.core.utils.extentions.requireActivity
 import binkssake.feature.stores.ui.StoreDetailScreen
 import binkssake.feature.stores.ui.StoresViewModel
 import binkssake.feature.stores.ui.StoresScreen
@@ -23,9 +23,10 @@ internal fun StoresNavigation(
 ) {
     val navController = rememberNavController()
     val state = viewModel.state.collectAsState().value
-    val activity = LocalContext.current.requireFragmentActivity()
+    val activity = LocalContext.current.requireActivity()
 
     LaunchedEffect(Unit) {
+        viewModel.executeAction(StoresViewModel.Action.FetchStores)
         viewModel.effects.collect { effect ->
             when (effect) {
                 is StoresViewModel.ViewEffect.OpenSakeShopDetails -> {
@@ -61,10 +62,15 @@ internal fun StoresNavigation(
             arguments = StoreDetail.arguments()
         ) { backStackEntry ->
             val index = StoreDetail.extractIndex(backStackEntry)
-            StoreDetailScreen(
-                store = state.sakeShops[index],
-                executeAction = viewModel::executeAction
-            )
+            val store = state.sakeShops.getOrNull(index)
+            if (store == null) {
+                navController.popBackStack()
+            } else {
+                StoreDetailScreen(
+                    store = store,
+                    executeAction = viewModel::executeAction
+                )
+            }
         }
     }
 }

@@ -1,7 +1,8 @@
 package binkssake.feature.stores.api
 
-import androidx.fragment.app.Fragment
+import androidx.compose.runtime.Composable
 
 interface StoresApi {
-    fun create() : Fragment
+    @Composable
+    fun Content()
 }

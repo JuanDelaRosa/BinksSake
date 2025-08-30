@@ -12,5 +12,4 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.fragment.ktx)
 }
