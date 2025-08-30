@@ -1,11 +1,11 @@
-package binkssake.feature.stores.ui
+package akibaroom.feature.stores.ui
 
 
 import app.cash.turbine.test
-import binkssake.core.utils.coroutines.DispatchersProvider
-import binkssake.core.utils.json.Result
-import binkssake.feature.stores.api.model.SakeShop
-import binkssake.feature.stores.domain.usecase.FetchSakeShopsUseCase
+import akibaroom.core.utils.coroutines.DispatchersProvider
+import akibaroom.core.utils.json.Result
+import akibaroom.feature.stores.api.model.SakeShop
+import akibaroom.feature.stores.domain.usecase.FetchSakeShopsUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
