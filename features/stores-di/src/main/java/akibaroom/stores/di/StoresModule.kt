@@ -2,8 +2,17 @@ package akibaroom.stores.di
 
 import akibaroom.feature.stores.api.StoresApi
 import akibaroom.feature.stores.di.StoresApiImpl
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
-val storesModule = module {
-    factory<StoresApi> { StoresApiImpl() }
+@Module
+@InstallIn(SingletonComponent::class)
+object StoresModule {
+
+    @Provides
+    @Singleton
+    fun provideStoresApi(): StoresApi = StoresApiImpl()
 }

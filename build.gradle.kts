@@ -4,3 +4,24 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
 }
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath("com.squareup:javapoet:1.13.0")
+    }
+}
+
+subprojects {
+    configurations.configureEach {
+        resolutionStrategy.eachDependency {
+            if (requested.group == "com.squareup" && requested.name == "javapoet") {
+                useVersion("1.13.0")
+            }
+        }
+    }
+}

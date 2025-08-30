@@ -5,11 +5,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import akibaroom.core.ui.theme.AkibaRoomTheme
 import akibaroom.feature.stores.api.StoresApi
-import org.koin.android.ext.android.inject
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val storesApi: StoresApi by inject()
+    @Inject
+    lateinit var storesApi: StoresApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
