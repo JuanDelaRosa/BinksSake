@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AkibaRoom</string>
+    <string name="error_generic">Algo salió mal. Inténtalo de nuevo.</string>
+    <string name="figures_title">Figuras</string>
+    <string name="action_retry">Reintentar</string>
+</resources>
+

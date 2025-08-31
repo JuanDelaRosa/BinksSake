@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import akibaroom.feature.figures.ui.navigation.FiguresEntry
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import androidx.navigation.navDeepLink
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -42,6 +43,11 @@ fun CollectorRoot() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "figure") {
         composable("figure") { FiguresEntry() }
-        composable("figure/{id}") { /* detail screen placeholder */ }
+        composable(
+            route = "figure/{id}",
+            deepLinks = listOf(
+                navDeepLink { uriPattern = "app://akibaroom/figure/{id}" }
+            )
+        ) { /* detail screen placeholder */ }
     }
 }

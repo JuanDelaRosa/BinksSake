@@ -35,6 +35,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import akibaroom.core.ui.compose.AsyncImage
 import akibaroom.core.ui.compose.ErrorAlertDialog
+import androidx.compose.ui.res.stringResource
+import akibaroom.feature.figures.R
 
 @Composable
 internal fun FiguresScreen(
@@ -83,7 +85,7 @@ internal fun FiguresScreen(
 
         if (state.showError) {
             ErrorAlertDialog(
-                message = "Something went wrong.\nPlease try again.",
+                message = stringResource(id = R.string.error_generic),
                 onDismiss = {
                     executeAction(FigureViewModel.Action.DismissError)
                 }

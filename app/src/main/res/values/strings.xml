@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">AkibaRoom</string>
+    <string name="error_generic">Something went wrong. Please try again.</string>
+    <string name="figures_title">Figures</string>
+    <string name="action_retry">Retry</string>
 </resources>
