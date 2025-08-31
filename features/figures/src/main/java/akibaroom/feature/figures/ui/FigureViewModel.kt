@@ -1,10 +1,13 @@
 package akibaroom.feature.figures.ui
 
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import akibaroom.feature.figures.api.CharacterResponse
 import akibaroom.core.ui.viewmodel.MviViewModel
 import akibaroom.core.utils.json.Result
 import akibaroom.feature.figures.domain.usecase.FetchFigureUseCase
+import akibaroom.feature.figures.data.paging.FiguresPager
 import akibaroom.feature.figures.ui.FigureViewModel.Action
 import akibaroom.feature.figures.ui.FigureViewModel.ViewEffect
 import akibaroom.feature.figures.ui.FigureViewModel.ViewState
@@ -15,7 +18,8 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 internal class FigureViewModel @Inject constructor(
-    private val fetchFigureUseCase: FetchFigureUseCase
+    private val fetchFigureUseCase: FetchFigureUseCase,
+    private val figuresPager: FiguresPager
 ) : MviViewModel<ViewState, ViewEffect, Action>() {
 
     private fun fetchFigures() {
@@ -65,9 +69,12 @@ internal class FigureViewModel @Inject constructor(
 
     data class ViewState(
         val figures: List<CharacterResponse> = emptyList(),
+        val paging: kotlinx.coroutines.flow.Flow<PagingData<akibaroom.core.database.FigureEntity>>? = null,
         val isLoading: Boolean = false,
         val showError: Boolean = false
     )
 
-    override fun createInitialState() = ViewState()
+    override fun createInitialState() = ViewState(
+        paging = figuresPager.pager().cachedIn(viewModelScope)
+    )
 }

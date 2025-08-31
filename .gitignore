@@ -16,3 +16,5 @@ local.properties
 *.log
 core/network/build
 /.kotlin
+/.idea
+/core/database/build

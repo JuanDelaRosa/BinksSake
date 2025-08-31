@@ -57,4 +57,14 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":features:figures-api"))
     implementation(project(":features:figures"))
+    implementation(project(":core:datastore"))
+    implementation(project(":core:database"))
+    implementation(libs.androidx.paging.runtime)
+}
+
+kapt {
+    correctErrorTypes = true
+    arguments {
+        arg("dagger.hilt.internal.useAggregatingRootProcessor", "true")
+    }
 }

@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.StarHalf
 import androidx.compose.material.icons.filled.Star
@@ -48,12 +49,31 @@ internal fun FiguresScreen(
         LazyListState()
     }
     Box {
-        LazyColumn(state = listState) {
-            itemsIndexed(state.figures) { index, figure ->
-                FigureItem(
-                    figure = figure,
-                    onClick = { executeAction(FigureViewModel.Action.FigureSelected(index)) }
-                )
+        val lazyPagingItems = state.paging?.collectAsLazyPagingItems()
+        if (lazyPagingItems != null) {
+            LazyColumn(state = listState) {
+                items(count = lazyPagingItems.itemCount) { index ->
+                    val e = lazyPagingItems[index]
+                    if (e != null) {
+                        FigureItem(
+                            figure = CharacterResponse(
+                                id = e.id,
+                                name = e.name,
+                                image = e.imageUrl
+                            ),
+                            onClick = { }
+                        )
+                    }
+                }
+            }
+        } else {
+            LazyColumn(state = listState) {
+                itemsIndexed(state.figures) { index, figure ->
+                    FigureItem(
+                        figure = figure,
+                        onClick = { executeAction(FigureViewModel.Action.FigureSelected(index)) }
+                    )
+                }
             }
         }
 

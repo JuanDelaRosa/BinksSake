@@ -2,6 +2,7 @@ package akibaroom.core.datastore
 
 import android.content.Context
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -30,7 +31,7 @@ class ThemePreferencesRepository @Inject constructor(
     }
 
     suspend fun setTheme(themePreference: ThemePreference) {
-        context.themeDataStore.edit { prefs: Preferences ->
+        context.themeDataStore.edit { prefs: MutablePreferences ->
             val value = when (themePreference) {
                 ThemePreference.SYSTEM -> 0
                 ThemePreference.LIGHT -> 1

@@ -16,8 +16,10 @@ android {
 
 dependencies {
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.room.runtime)
+    api(libs.room.runtime)
     implementation(libs.room.ktx)
+    implementation(libs.room.paging)
+    implementation(libs.androidx.paging.runtime)
     kapt(libs.room.compiler)
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
