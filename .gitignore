@@ -18,3 +18,5 @@ core/network/build
 /.kotlin
 /.idea
 /core/database/build
+/core/datastore/build
+/.idea

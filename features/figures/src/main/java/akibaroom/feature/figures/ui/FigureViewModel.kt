@@ -3,15 +3,19 @@ package akibaroom.feature.figures.ui
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import akibaroom.feature.figures.api.CharacterResponse
+import androidx.paging.map
+import kotlinx.coroutines.flow.map
 import akibaroom.core.ui.viewmodel.MviViewModel
 import akibaroom.core.utils.json.Result
 import akibaroom.feature.figures.domain.usecase.FetchFigureUseCase
 import akibaroom.feature.figures.data.paging.FiguresPager
+import akibaroom.feature.figures.data.mapper.toUi
+import akibaroom.core.database.FigureEntity
 import akibaroom.feature.figures.ui.FigureViewModel.Action
 import akibaroom.feature.figures.ui.FigureViewModel.ViewEffect
 import akibaroom.feature.figures.ui.FigureViewModel.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -68,13 +72,16 @@ internal class FigureViewModel @Inject constructor(
     }
 
     data class ViewState(
-        val figures: List<CharacterResponse> = emptyList(),
-        val paging: kotlinx.coroutines.flow.Flow<PagingData<akibaroom.core.database.FigureEntity>>? = null,
+        val figures: List<FigureUi> = emptyList(),
+        val paging: Flow<PagingData<FigureUi>>? = null,
         val isLoading: Boolean = false,
         val showError: Boolean = false
     )
 
     override fun createInitialState() = ViewState(
-        paging = figuresPager.pager().cachedIn(viewModelScope)
+        paging = figuresPager
+            .pager()
+            .map { pagingData: PagingData<FigureEntity> -> pagingData.map { entity: FigureEntity -> entity.toUi() } }
+            .cachedIn(viewModelScope)
     )
 }

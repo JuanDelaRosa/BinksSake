@@ -15,11 +15,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.paging.compose.collectAsLazyPagingItems
+// removed paging-compose items import to use count/index style
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.StarHalf
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -35,7 +35,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import akibaroom.core.ui.compose.AsyncImage
 import akibaroom.core.ui.compose.ErrorAlertDialog
-import akibaroom.feature.figures.api.CharacterResponse
 
 @Composable
 internal fun FiguresScreen(
@@ -53,20 +52,16 @@ internal fun FiguresScreen(
         if (lazyPagingItems != null) {
             LazyColumn(state = listState) {
                 items(count = lazyPagingItems.itemCount) { index ->
-                    val e = lazyPagingItems[index]
-                    if (e != null) {
+                    val ui = lazyPagingItems[index]
+                    if (ui != null) {
                         FigureItem(
-                            figure = CharacterResponse(
-                                id = e.id,
-                                name = e.name,
-                                image = e.imageUrl
-                            ),
+                            figure = ui,
                             onClick = { }
                         )
                     }
                 }
             }
-        } else {
+        } else if (state.figures.isNotEmpty()) {
             LazyColumn(state = listState) {
                 itemsIndexed(state.figures) { index, figure ->
                     FigureItem(
@@ -145,7 +140,7 @@ fun RatingStars(
 
 @Composable
 internal fun FigureDetailScreen(
-    figure: CharacterResponse,
+    figure: FigureUi,
     executeAction: (FigureViewModel.Action) -> Unit,
 ) {
     BackHandler {
@@ -174,7 +169,7 @@ internal fun FigureDetailScreen(
 @Composable
 fun FiguresScreenPreview() {
     val sample = listOf(
-        CharacterResponse(id = 1, name = "Rick", image = "")
+        FigureUi(id = 1, name = "Rick", image = "")
     )
     FiguresScreen(
         state = FigureViewModel.ViewState(figures = sample),
@@ -185,12 +180,12 @@ fun FiguresScreenPreview() {
 @Preview
 @Composable
 fun FigureDetailScreenPreview() {
-    val sample = CharacterResponse(id = 1, name = "Rick", image = "")
+    val sample = FigureUi(id = 1, name = "Rick", image = "")
     FigureDetailScreen(figure = sample, executeAction = {} )
 }
 
 @Composable
-private fun FigureItem(figure: CharacterResponse, onClick: () -> Unit) {
+private fun FigureItem(figure: FigureUi, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
