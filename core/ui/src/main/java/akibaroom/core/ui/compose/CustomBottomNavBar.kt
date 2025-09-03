@@ -88,7 +88,7 @@ private fun SearchButton(onSearch: () -> Unit = {}) {
                     imageVector = Icons.Default.Search,
                     contentDescription = "",
                     Modifier.size(32.dp),
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    tint = MaterialTheme.colorScheme.secondary,
                 )
             }
         }
@@ -118,13 +118,13 @@ private fun BottomNavTab(
             imageVector = item.icon,
             contentDescription = item.label,
             modifier = Modifier.size(28.dp),
-            tint = if (item.isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+            tint = if (item.isSelected) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.secondary
         )
         Text(
             text = item.label,
             fontSize = 12.sp,
             fontWeight = if (item.isSelected) FontWeight.Medium else FontWeight.Normal,
-            color = if (item.isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+            color = if (item.isSelected) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.secondary,
         )
     }
 }
