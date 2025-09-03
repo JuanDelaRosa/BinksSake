@@ -119,52 +119,6 @@ internal fun FiguresScreen(
     }
 }
 
-// Removed legacy StoreItem (SakeShop)
-
-@Composable
-fun RatingStars(
-    rating: Double,
-    modifier: Modifier = Modifier,
-    maxStars: Int = 5
-) {
-    val fullStars = rating.toInt()
-    val hasHalfStar = (rating - fullStars) >= 0.5
-    val emptyStars = maxStars - fullStars - if (hasHalfStar) 1 else 0
-
-    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        repeat(fullStars) {
-            Icon(
-                imageVector = Icons.Default.Star,
-                contentDescription = null,
-                tint = Color(0xFFFFC107),
-                modifier = Modifier.size(16.dp)
-            )
-        }
-        if (hasHalfStar) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.StarHalf,
-                contentDescription = null,
-                tint = Color(0xFFFFC107),
-                modifier = Modifier.size(16.dp)
-            )
-        }
-        repeat(emptyStars) {
-            Icon(
-                imageVector = Icons.Default.StarBorder,
-                contentDescription = null,
-                tint = Color(0xFFFFC107),
-                modifier = Modifier.size(16.dp)
-            )
-        }
-
-        Spacer(modifier = Modifier.width(4.dp))
-        Text(
-            text = "%.1f".format(rating),
-            style = MaterialTheme.typography.labelSmall
-        )
-    }
-}
-
 @Composable
 internal fun FigureDetailScreen(
     figure: FigureUi,
