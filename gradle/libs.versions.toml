@@ -26,6 +26,8 @@ coroutines = "1.8.1"
 mockito-kotlin = "5.4.0"
 turbine = "0.12.1"
 kotest = "5.5.5"
+uiToolingPreview = "1.9.0"
+uiToolingVersion = "1.9.0"
 
 [libraries]
 # Kotlin
@@ -91,6 +93,8 @@ test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 test-kotest = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 test-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 test-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin" }
+ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "uiToolingPreview" }
+androidx-compose-ui-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiToolingVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

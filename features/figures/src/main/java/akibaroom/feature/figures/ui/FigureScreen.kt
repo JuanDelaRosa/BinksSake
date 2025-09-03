@@ -34,9 +34,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import akibaroom.core.ui.compose.AsyncImage
+import akibaroom.core.ui.compose.BottomNavItem
+import akibaroom.core.ui.compose.CustomBottomNavBar
 import akibaroom.core.ui.compose.ErrorAlertDialog
 import androidx.compose.ui.res.stringResource
 import akibaroom.feature.figures.R
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.icons.filled.Home
 
 @Composable
 internal fun FiguresScreen(
@@ -49,7 +53,9 @@ internal fun FiguresScreen(
     val listState = rememberSaveable(saver = LazyListState.Saver) {
         LazyListState()
     }
-    Box {
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
         val lazyPagingItems = state.paging?.collectAsLazyPagingItems()
         if (lazyPagingItems != null) {
             LazyColumn(state = listState) {
@@ -89,6 +95,25 @@ internal fun FiguresScreen(
                 onDismiss = {
                     executeAction(FigureViewModel.Action.DismissError)
                 }
+            )
+        }
+        Column(
+            modifier = Modifier.align(Alignment.BottomCenter)
+        ) {
+            CustomBottomNavBar(
+                showSearch = true,
+                items = listOf(
+                    BottomNavItem(
+                        label = "Collection",
+                        icon = Icons.Default.Home,
+                        isSelected = true
+                    ),
+                    BottomNavItem(
+                        label = "Wishlist",
+                        icon = Icons.Default.Star,
+                        isSelected = false
+                    ),
+                )
             )
         }
     }
@@ -167,11 +192,22 @@ internal fun FigureDetailScreen(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun FiguresScreenPreview() {
     val sample = listOf(
-        FigureUi(id = 1, name = "Rick", image = "")
+        FigureUi(id = 1, name = "Rick", image = ""),
+        FigureUi(id = 1, name = "Rick", image = ""),
+        FigureUi(id = 1, name = "Rick", image = ""),
+        FigureUi(id = 1, name = "Rick", image = ""),
+        FigureUi(id = 1, name = "Rick", image = ""),
+        FigureUi(id = 1, name = "Rick", image = ""),
+        FigureUi(id = 1, name = "Rick", image = ""),
+        FigureUi(id = 1, name = "Rick", image = ""),
+        FigureUi(id = 1, name = "Rick", image = ""),
+        FigureUi(id = 1, name = "Rick", image = ""),
+        FigureUi(id = 1, name = "Rick", image = ""),
+        FigureUi(id = 1, name = "Rick", image = ""),
     )
     FiguresScreen(
         state = FigureViewModel.ViewState(figures = sample),

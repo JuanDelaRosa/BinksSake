@@ -51,7 +51,7 @@ fun CollectorRoot() {
                 )
             }
         },
-        bottomBar = {
+        /*bottomBar = {
             if (showBars) {
                 NavigationBar {
                     NavigationBarItem(
@@ -83,7 +83,7 @@ fun CollectorRoot() {
                     )
                 }
             }
-        }
+        }*/
     ) { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
             NavHost(navController = navController, startDestination = "collection") {

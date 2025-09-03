@@ -17,4 +17,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.coil.compose)
     implementation(libs.androidx.material3.windowSizeClass)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.ui.tooling.preview)
+    debugImplementation(libs.androidx.compose.ui.ui.tooling)
 }

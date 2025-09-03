@@ -12,12 +12,14 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/database" />
+            <option value="$PROJECT_DIR$/core/datastore" />
+            <option value="$PROJECT_DIR$/core/network" />
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/core/utils" />
             <option value="$PROJECT_DIR$/features" />
-            <option value="$PROJECT_DIR$/features/stores" />
-            <option value="$PROJECT_DIR$/features/stores-api" />
-            <option value="$PROJECT_DIR$/features/stores-di" />
+            <option value="$PROJECT_DIR$/features/figures" />
+            <option value="$PROJECT_DIR$/features/figures-api" />
           </set>
         </option>
       </GradleProjectSettings>
