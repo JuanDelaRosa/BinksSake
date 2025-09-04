@@ -12,9 +12,9 @@ import akibaroom.core.ui.compose.FeatureNavigation
 import akibaroom.core.ui.navigation.navigateSafe
 import akibaroom.core.ui.navigation.navigateUpOrFinish
 import akibaroom.core.utils.extentions.requireActivity
-import akibaroom.feature.figures.ui.FigureDetailScreen
+import akibaroom.feature.figures.ui.compose.FigureDetailScreen
 import akibaroom.feature.figures.ui.FigureViewModel
-import akibaroom.feature.figures.ui.FiguresScreen
+import akibaroom.feature.figures.ui.compose.FiguresScreen
 import androidx.core.net.toUri
 import androidx.paging.compose.collectAsLazyPagingItems
 
