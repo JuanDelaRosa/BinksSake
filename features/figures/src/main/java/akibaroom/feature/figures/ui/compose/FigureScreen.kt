@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Star
@@ -33,6 +35,8 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.flowOf
+import akibaroom.core.ui.theme.rememberCollectorWindowSize
+import androidx.compose.runtime.LaunchedEffect
 
 @Composable
 internal fun FiguresScreen(
@@ -44,8 +48,9 @@ internal fun FiguresScreen(
     Box(modifier = Modifier.fillMaxSize()) {
         val density = LocalDensity.current
         var bottomBarHeightPx by remember { mutableStateOf(0) }
-
-        LazyColumn(
+        val windowSize = rememberCollectorWindowSize()
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(windowSize.gridCellsFixed()),
             contentPadding = PaddingValues(bottom = with(density) { bottomBarHeightPx.toDp() })
         ) {
             items(pagingFlow.itemCount) { index ->

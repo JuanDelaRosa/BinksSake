@@ -13,7 +13,20 @@ import androidx.compose.ui.unit.dp
 data class CollectorWindowSize(
     val width: WindowWidthSizeClass,
     val height: WindowHeightSizeClass
-)
+) {
+    fun gridCellsFixed() = when {
+        this.isCompact() -> COMPACT
+        this.isMedium() -> MEDIUM
+        this.isExpanded() -> EXPANDED
+        else -> COMPACT
+    }
+
+    companion object {
+        private const val COMPACT = 2
+        private const val MEDIUM = 4
+        private const val EXPANDED = 6
+    }
+}
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
@@ -34,5 +47,3 @@ fun rememberCollectorWindowSize(): CollectorWindowSize {
 fun CollectorWindowSize.isCompact(): Boolean = width == WindowWidthSizeClass.Compact
 fun CollectorWindowSize.isMedium(): Boolean = width == WindowWidthSizeClass.Medium
 fun CollectorWindowSize.isExpanded(): Boolean = width == WindowWidthSizeClass.Expanded
-
-
