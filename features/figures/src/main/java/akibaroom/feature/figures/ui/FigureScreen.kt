@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.paging.compose.collectAsLazyPagingItems
 // removed paging-compose items import to use count/index style
 import androidx.compose.material.icons.Icons
@@ -27,6 +28,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.material3.Text
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,19 +47,22 @@ import akibaroom.feature.figures.R
 import akibaroom.feature.figures.domain.model.Figure
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
 
 @Composable
 internal fun FiguresScreen(
     state: FigureViewModel.ViewState,
     executeAction: (FigureViewModel.Action) -> Unit,
 ) {
-    BackHandler {
-        executeAction(FigureViewModel.Action.BackClicked)
-    }
-    Box(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        LazyColumn {
+    BackHandler { executeAction(FigureViewModel.Action.BackClicked) }
+    Box(modifier = Modifier.fillMaxSize()) {
+        val density = LocalDensity.current
+        var bottomBarHeightPx by remember { mutableStateOf(0) }
+
+        LazyColumn(
+            contentPadding = PaddingValues(bottom = with(density) { bottomBarHeightPx.toDp() })
+        ) {
             itemsIndexed(state.figures) { index, figure ->
                 FigureItem(
                     figure = figure,
@@ -62,27 +70,7 @@ internal fun FiguresScreen(
                 )
             }
         }
-
-        if (state.isLoading) {
-            CircularProgressIndicator(
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .size(24.dp),
-                strokeWidth = 2.dp
-            )
-        }
-
-        if (state.showError) {
-            ErrorAlertDialog(
-                message = stringResource(id = R.string.error_generic),
-                onDismiss = {
-                    executeAction(FigureViewModel.Action.DismissError)
-                }
-            )
-        }
-        Column(
-            modifier = Modifier.align(Alignment.BottomCenter)
-        ) {
+        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
             CustomBottomNavBar(
                 showSearch = true,
                 items = listOf(
@@ -97,6 +85,26 @@ internal fun FiguresScreen(
                         isSelected = false
                     ),
                 )
+            , modifier = Modifier.onGloballyPositioned { coordinates ->
+                    bottomBarHeightPx = coordinates.size.height
+                }
+            )
+        }
+
+        if (state.isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .size(24.dp),
+                strokeWidth = 2.dp
+            )
+        }
+        if (state.showError) {
+            ErrorAlertDialog(
+                message = stringResource(id = R.string.error_generic),
+                onDismiss = {
+                    executeAction(FigureViewModel.Action.DismissError)
+                }
             )
         }
     }

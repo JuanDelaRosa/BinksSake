@@ -42,10 +42,11 @@ data class BottomNavItem(
 fun CustomBottomNavBar(
     items: List<BottomNavItem>,
     showSearch: Boolean,
+    modifier: Modifier = Modifier,
     onSearch: () -> Unit = {}
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
@@ -62,7 +63,6 @@ fun CustomBottomNavBar(
             SearchButton(onSearch = onSearch)
         }
     }
-
 }
 
 @Composable
