@@ -8,5 +8,5 @@ import akibaroom.feature.figures.domain.service.FigureService
 class FigureServiceImpl(
     private val api: RickAndMortyApi = Networking.createService(RickAndMortyApi::class.java)
 ): FigureService {
-    override suspend fun fetchFigures(page: Int) = safeServiceCall { api.getCharacters(1) }
+    override suspend fun fetchFigures(page: Int) = safeServiceCall { api.getCharacters(page) }
 }

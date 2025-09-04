@@ -1,17 +1,22 @@
 package akibaroom.feature.figures.domain.usecase
 
-import akibaroom.core.utils.coroutines.DefaultDispatchersProvider
-import akibaroom.core.utils.coroutines.DispatchersProvider
-import akibaroom.feature.figures.data.repository.FigureRepositoryImpl
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import akibaroom.feature.figures.data.paging.FiguresPagingSource
+import akibaroom.feature.figures.domain.model.Figure
 import akibaroom.feature.figures.domain.repository.FigureRepository
-import kotlinx.coroutines.withContext
-import okhttp3.Dispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class FetchFigureUseCase(
-    private val figureRepository: FigureRepository = FigureRepositoryImpl(),
-    private val dispatcher: DispatchersProvider = DefaultDispatchersProvider()
+class FetchFigureUseCase @Inject constructor(
+    private val figureRepository: FigureRepository
 ) {
-    suspend operator fun invoke(page: Int) = withContext(dispatcher.io) {
-        figureRepository.fetchFigures(page)
-    }
+    fun paging(scope: CoroutineScope, pageSize: Int = 20): Flow<PagingData<Figure>> =
+        Pager(
+            config = PagingConfig(pageSize = pageSize, enablePlaceholders = false),
+            pagingSourceFactory = { FiguresPagingSource(figureRepository) }
+        ).flow.cachedIn(scope)
 }

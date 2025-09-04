@@ -16,6 +16,7 @@ import akibaroom.feature.figures.ui.FigureDetailScreen
 import akibaroom.feature.figures.ui.FigureViewModel
 import akibaroom.feature.figures.ui.FiguresScreen
 import androidx.core.net.toUri
+import androidx.paging.compose.collectAsLazyPagingItems
 
 @Composable
 internal fun FiguresNavigation(
@@ -23,6 +24,7 @@ internal fun FiguresNavigation(
 ) {
     val navController = rememberNavController()
     val state = viewModel.state.collectAsState().value
+    val paging = viewModel.pagingFlow.collectAsLazyPagingItems()
     val activity = LocalContext.current.requireActivity()
 
     LaunchedEffect(Unit) {
@@ -53,6 +55,7 @@ internal fun FiguresNavigation(
     ) {
         composable(ListOfFigures.route) {
             FiguresScreen(
+                pagingFlow = paging,
                 state = state,
                 executeAction = viewModel::executeAction
             )
@@ -62,7 +65,7 @@ internal fun FiguresNavigation(
             arguments = FigureDetail.arguments()
         ) { backStackEntry ->
             val index = FigureDetail.extractIndex(backStackEntry)
-            val figure = state.figures.getOrNull(index)
+            val figure = paging.itemSnapshotList.getOrNull(index)
             if (figure == null) {
                 navController.popBackStack()
             } else {
