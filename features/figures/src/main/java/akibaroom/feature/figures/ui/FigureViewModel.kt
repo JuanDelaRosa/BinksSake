@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class FigureViewModel @Inject constructor(
-    private val fetchFigureUseCase: FetchFigureUseCase = FetchFigureUseCase()
+    private val fetchFigureUseCase: FetchFigureUseCase
 ) : MviViewModel<ViewState, ViewEffect, Action>() {
 
     private fun fetchFigures() {
