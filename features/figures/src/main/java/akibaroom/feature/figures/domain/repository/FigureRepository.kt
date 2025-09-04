@@ -1,8 +1,10 @@
 package akibaroom.feature.figures.domain.repository
 
-import akibaroom.core.utils.json.Result
-import akibaroom.feature.figures.ui.FigureUi
+import akibaroom.core.network.models.Response
+import akibaroom.feature.figures.domain.model.FigurePage
 
 interface FigureRepository {
-    suspend fun fetchFigures(): Result<List<FigureUi>>
+    suspend fun fetchFigures(
+        page: Int
+    ): Response<FigurePage>
 }

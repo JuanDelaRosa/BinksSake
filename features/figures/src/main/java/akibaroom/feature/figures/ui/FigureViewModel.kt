@@ -11,6 +11,7 @@ import akibaroom.feature.figures.domain.usecase.FetchFigureUseCase
 import akibaroom.feature.figures.data.paging.FiguresPager
 import akibaroom.feature.figures.data.mapper.toUi
 import akibaroom.core.database.FigureEntity
+import akibaroom.core.network.models.Response
 import akibaroom.feature.figures.ui.FigureViewModel.Action
 import akibaroom.feature.figures.ui.FigureViewModel.ViewEffect
 import akibaroom.feature.figures.ui.FigureViewModel.ViewState
@@ -29,7 +30,7 @@ internal class FigureViewModel @Inject constructor(
     private fun fetchFigures() {
         _state.update { it.copy(isLoading = true) }
         viewModelScope.launch {
-            when (val result = fetchFigureUseCase()) {
+            when (val result = fetchFigureUseCase(1)) {
                 is Result.Success -> {
                     _state.update { it.copy(figures = result.data, isLoading = false) }
                 }

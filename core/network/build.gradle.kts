@@ -20,5 +20,6 @@ dependencies {
     implementation(libs.retrofit.kotlinx.serialization)
     implementation(libs.okhttp.logging)
     implementation(libs.dagger.hilt.android)
+    implementation(project(":core:utils"))
     kapt(libs.dagger.hilt.compiler)
 }
