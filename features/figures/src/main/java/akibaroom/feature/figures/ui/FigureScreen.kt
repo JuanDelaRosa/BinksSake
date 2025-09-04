@@ -39,6 +39,7 @@ import akibaroom.core.ui.compose.CustomBottomNavBar
 import akibaroom.core.ui.compose.ErrorAlertDialog
 import androidx.compose.ui.res.stringResource
 import akibaroom.feature.figures.R
+import akibaroom.feature.figures.domain.model.Figure
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.filled.Home
 
@@ -50,33 +51,15 @@ internal fun FiguresScreen(
     BackHandler {
         executeAction(FigureViewModel.Action.BackClicked)
     }
-    val listState = rememberSaveable(saver = LazyListState.Saver) {
-        LazyListState()
-    }
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        val lazyPagingItems = state.paging?.collectAsLazyPagingItems()
-        if (lazyPagingItems != null) {
-            LazyColumn(state = listState) {
-                items(count = lazyPagingItems.itemCount) { index ->
-                    val ui = lazyPagingItems[index]
-                    if (ui != null) {
-                        FigureItem(
-                            figure = ui,
-                            onClick = { }
-                        )
-                    }
-                }
-            }
-        } else if (state.figures.isNotEmpty()) {
-            LazyColumn(state = listState) {
-                itemsIndexed(state.figures) { index, figure ->
-                    FigureItem(
-                        figure = figure,
-                        onClick = { executeAction(FigureViewModel.Action.FigureSelected(index)) }
-                    )
-                }
+        LazyColumn {
+            itemsIndexed(state.figures) { index, figure ->
+                FigureItem(
+                    figure = figure,
+                    onClick = { executeAction(FigureViewModel.Action.FigureSelected(index)) }
+                )
             }
         }
 
@@ -121,7 +104,7 @@ internal fun FiguresScreen(
 
 @Composable
 internal fun FigureDetailScreen(
-    figure: FigureUi,
+    figure: Figure,
     executeAction: (FigureViewModel.Action) -> Unit,
 ) {
     BackHandler {
@@ -150,18 +133,18 @@ internal fun FigureDetailScreen(
 @Composable
 fun FiguresScreenPreview() {
     val sample = listOf(
-        FigureUi(id = 1, name = "Rick", image = ""),
-        FigureUi(id = 1, name = "Rick", image = ""),
-        FigureUi(id = 1, name = "Rick", image = ""),
-        FigureUi(id = 1, name = "Rick", image = ""),
-        FigureUi(id = 1, name = "Rick", image = ""),
-        FigureUi(id = 1, name = "Rick", image = ""),
-        FigureUi(id = 1, name = "Rick", image = ""),
-        FigureUi(id = 1, name = "Rick", image = ""),
-        FigureUi(id = 1, name = "Rick", image = ""),
-        FigureUi(id = 1, name = "Rick", image = ""),
-        FigureUi(id = 1, name = "Rick", image = ""),
-        FigureUi(id = 1, name = "Rick", image = ""),
+        Figure(id = 1, name = "Rick", image = ""),
+        Figure(id = 1, name = "Rick", image = ""),
+        Figure(id = 1, name = "Rick", image = ""),
+        Figure(id = 1, name = "Rick", image = ""),
+        Figure(id = 1, name = "Rick", image = ""),
+        Figure(id = 1, name = "Rick", image = ""),
+        Figure(id = 1, name = "Rick", image = ""),
+        Figure(id = 1, name = "Rick", image = ""),
+        Figure(id = 1, name = "Rick", image = ""),
+        Figure(id = 1, name = "Rick", image = ""),
+        Figure(id = 1, name = "Rick", image = ""),
+        Figure(id = 1, name = "Rick", image = ""),
     )
     FiguresScreen(
         state = FigureViewModel.ViewState(figures = sample),
@@ -172,12 +155,12 @@ fun FiguresScreenPreview() {
 @Preview
 @Composable
 fun FigureDetailScreenPreview() {
-    val sample = FigureUi(id = 1, name = "Rick", image = "")
+    val sample = Figure(id = 1, name = "Rick", image = "")
     FigureDetailScreen(figure = sample, executeAction = {} )
 }
 
 @Composable
-private fun FigureItem(figure: FigureUi, onClick: () -> Unit) {
+private fun FigureItem(figure: Figure, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()

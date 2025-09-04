@@ -2,7 +2,6 @@ package akibaroom.core.network.models
 
 import akibaroom.core.network.R
 import akibaroom.core.utils.enviroment.AppContextProvider
-import okhttp3.ResponseBody
 import java.io.Serializable
 
 data class CustomError(
