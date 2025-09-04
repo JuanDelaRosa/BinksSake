@@ -136,7 +136,7 @@ fun CustomBottomNavBarPreview() {
         showSearch = true,
         items = listOf(
             BottomNavItem(
-                label = "Collection",
+                label = "Room",
                 icon = Icons.Default.Home,
                 isSelected = true
             ),

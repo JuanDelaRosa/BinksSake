@@ -21,3 +21,5 @@ core/network/build
 /core/datastore/build
 /.idea
 /.idea
+/.idea
+.idea/.name

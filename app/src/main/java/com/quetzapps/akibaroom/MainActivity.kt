@@ -3,6 +3,7 @@ package com.quetzapps.akibaroom
 import akibaroom.core.datastore.ThemePreference
 import akibaroom.core.datastore.ThemePreferencesRepository
 import akibaroom.core.ui.theme.CollectorTheme
+import akibaroom.feature.figures.api.FiguresApi
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,6 +17,7 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject lateinit var themePrefs: ThemePreferencesRepository
+    @Inject lateinit var figuresApi: FiguresApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +29,7 @@ class MainActivity : ComponentActivity() {
                 ThemePreference.DARK -> true
             }
             CollectorTheme(useDarkTheme = useDark) {
-                CollectorRoot()
+                CollectorRoot(figuresApi = figuresApi)
             }
         }
     }
