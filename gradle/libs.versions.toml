@@ -6,6 +6,9 @@ lifecycleRuntimeKtx = "2.9.1"
 lifecyleViewModelCompose = "2.9.1"
 activityCompose = "1.10.1"
 composeBom = "2025.06.00"
+firebaseBom = "33.5.1"
+googleServices = "4.4.2"
+crashlyticsGradle = "3.0.2"
 navigationComposeAndroid = "2.9.0"
 hilt = "2.51.1"
 json = "1.6.3"
@@ -28,6 +31,7 @@ turbine = "0.12.1"
 kotest = "5.5.5"
 uiToolingPreview = "1.9.0"
 uiToolingVersion = "1.9.0"
+firebaseFirestoreKtx = "26.0.0"
 
 [libraries]
 # Kotlin
@@ -56,6 +60,13 @@ androidx-navigation-compose-android = { group = "androidx.navigation", name = "n
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationComposeAndroid" }
 androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
 androidx-paging-runtime = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging" }
+
+# Firebase BOM + artifacts
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
+play-services-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutines" }
 
 # Hilt
 dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
@@ -95,6 +106,7 @@ test-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-te
 test-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin" }
 ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "uiToolingPreview" }
 androidx-compose-ui-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiToolingVersion" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -104,3 +116,5 @@ android-library = { id = "com.android.library" }
 kotlin-parcelize = { id = "kotlin-parcelize" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlyticsGradle" }

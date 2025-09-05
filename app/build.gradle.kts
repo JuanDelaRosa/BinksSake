@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.android.hilt)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.crashlytics)
     id("org.jetbrains.kotlin.kapt")
 }
 
@@ -49,6 +51,11 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.android.material)
     implementation(project(":core:utils"))
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.firestore)
+    implementation(libs.play.services.coroutines)
     testImplementation(libs.test.junit4)
     androidTestImplementation(libs.test.androidx.junit)
     androidTestImplementation(libs.test.androidx.espresso.core)
