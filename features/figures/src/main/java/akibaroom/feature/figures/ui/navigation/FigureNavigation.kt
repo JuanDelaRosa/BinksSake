@@ -28,7 +28,6 @@ internal fun FiguresNavigation(
     val activity = LocalContext.current.requireActivity()
 
     LaunchedEffect(Unit) {
-        viewModel.executeAction(FigureViewModel.Action.FetchFigures)
         viewModel.effects.collect { effect ->
             when (effect) {
                 is FigureViewModel.ViewEffect.OpenFigureDetails -> {
@@ -36,14 +35,6 @@ internal fun FiguresNavigation(
                 }
                 FigureViewModel.ViewEffect.NavigateBack -> {
                     navController.navigateUpOrFinish(activity)
-                }
-                is FigureViewModel.ViewEffect.OpenAddressInMaps -> {
-                    val intent = Intent(Intent.ACTION_VIEW, effect.address.toUri())
-                    activity.startActivity(intent)
-                }
-                is FigureViewModel.ViewEffect.OpenWebsite -> {
-                    val customTabsIntent = CustomTabsIntent.Builder().build()
-                    customTabsIntent.launchUrl(activity, effect.website.toUri())
                 }
             }
         }

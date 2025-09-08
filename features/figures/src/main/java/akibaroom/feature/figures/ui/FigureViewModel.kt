@@ -6,13 +6,12 @@ import akibaroom.feature.figures.domain.usecase.FetchFigureUseCase
 import akibaroom.feature.figures.ui.FigureViewModel.Action
 import akibaroom.feature.figures.ui.FigureViewModel.ViewEffect
 import akibaroom.feature.figures.ui.FigureViewModel.ViewState
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,34 +23,22 @@ internal class FigureViewModel @Inject constructor(
         fetchFigureUseCase.paging(viewModelScope).cachedIn(viewModelScope)
 
     override fun handleAction(action: Action) = when (action) {
-        Action.FetchFigures -> { /* Paging starts automatically via flow */ }
         Action.BackClicked -> _effects += ViewEffect.NavigateBack
         Action.DismissError -> _state.update { it.copy(showError = false) }
         is Action.FigureSelected -> {
             _effects += ViewEffect.OpenFigureDetails(action.index)
-        }
-        is Action.AddressClicked -> {
-            _effects += ViewEffect.OpenAddressInMaps(action.address)
-        }
-        is Action.WebsiteClicked -> {
-            _effects += ViewEffect.OpenWebsite(action.website)
         }
     }
 
     sealed interface ViewEffect {
         data class OpenFigureDetails(val index: Int) : ViewEffect
         data object NavigateBack : ViewEffect
-        data class OpenAddressInMaps(val address: String) : ViewEffect
-        data class OpenWebsite(val website: String) : ViewEffect
     }
 
     sealed interface Action {
-        data object FetchFigures : Action
         data object BackClicked : Action
         data object DismissError : Action
         data class FigureSelected(val index: Int) : Action
-        data class AddressClicked(val address: String) : Action
-        data class WebsiteClicked(val website: String) : Action
     }
 
     data class ViewState(
