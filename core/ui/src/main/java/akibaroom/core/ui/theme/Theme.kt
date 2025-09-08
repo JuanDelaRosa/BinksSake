@@ -11,15 +11,85 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    // Primary colors
+    primary = DarkAccent,
+    onPrimary = DarkBackground,
+    primaryContainer = DarkSurface,
+    onPrimaryContainer = DarkPrimaryText,
+
+    // Secondary colors
+    secondary = DarkSecondaryText,
+    onSecondary = DarkBackground,
+    secondaryContainer = DarkSurface,
+    onSecondaryContainer = DarkPrimaryText,
+
+    // Tertiary colors
+    tertiary = DarkAccent,
+    onTertiary = DarkBackground,
+    tertiaryContainer = DarkSurface,
+    onTertiaryContainer = DarkPrimaryText,
+
+    // Surface colors
+    surface = DarkSurface,
+    onSurface = DarkPrimaryText,
+    surfaceVariant = DarkBackground,
+    onSurfaceVariant = DarkSecondaryText,
+    surfaceTint = DarkAccent,
+
+    // Background colors
+    background = DarkBackground,
+    onBackground = DarkPrimaryText,
+
+    // Error colors
+    error = DarkError,
+    onError = DarkBackground,
+    errorContainer = DarkSurface,
+    onErrorContainer = DarkError,
+
+    // Outline colors
+    outline = DarkBorder,
+    outlineVariant = DarkBorder
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    // Primary colors
+    primary = LightAccent,
+    onPrimary = LightSurface,
+    primaryContainer = LightSurface,
+    onPrimaryContainer = LightPrimaryText,
+
+    // Secondary colors
+    secondary = LightSecondaryText,
+    onSecondary = LightSurface,
+    secondaryContainer = LightSurface,
+    onSecondaryContainer = LightPrimaryText,
+
+    // Tertiary colors
+    tertiary = LightAccent,
+    onTertiary = LightSurface,
+    tertiaryContainer = LightSurface,
+    onTertiaryContainer = LightPrimaryText,
+
+    // Surface colors
+    surface = LightSurface,
+    onSurface = LightPrimaryText,
+    surfaceVariant = LightBackground,
+    onSurfaceVariant = LightSecondaryText,
+    surfaceTint = LightAccent,
+
+    // Background colors
+    background = LightBackground,
+    onBackground = LightPrimaryText,
+
+    // Error colors
+    error = LightError,
+    onError = LightSurface,
+    errorContainer = LightSurface,
+    onErrorContainer = LightError,
+
+    // Outline colors
+    outline = LightBorder,
+    outlineVariant = LightBorder
 )
 
 @Composable

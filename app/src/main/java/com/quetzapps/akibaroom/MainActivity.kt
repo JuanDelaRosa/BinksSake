@@ -20,22 +20,11 @@ class MainActivity : ComponentActivity() {
 
     @Inject lateinit var themePrefs: ThemePreferencesRepository
     @Inject lateinit var figuresApi: FiguresApi
-    @Inject lateinit var firebase: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             val theme by themePrefs.theme.collectAsState(initial = ThemePreference.SYSTEM)
-            val query = firebase.collection("collectable")
-
-            query.count()
-                .get(AggregateSource.SERVER) // o AggregateSource.CACHE
-                .addOnSuccessListener { snapshot ->
-                    val count = snapshot.count
-                }
-                .addOnFailureListener { e ->
-                    val y = "x"
-                }
             val useDark = when (theme) {
                 ThemePreference.SYSTEM -> androidx.compose.foundation.isSystemInDarkTheme()
                 ThemePreference.LIGHT -> false
