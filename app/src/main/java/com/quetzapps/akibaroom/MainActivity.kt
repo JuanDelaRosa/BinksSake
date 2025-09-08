@@ -3,14 +3,17 @@ package com.quetzapps.akibaroom
 import akibaroom.core.datastore.ThemePreference
 import akibaroom.core.datastore.ThemePreferencesRepository
 import akibaroom.core.ui.theme.CollectorTheme
+import akibaroom.feature.auth.api.AuthApi
+import akibaroom.feature.collection.api.CollectionApi
 import akibaroom.feature.figures.api.FiguresApi
+import akibaroom.feature.profile.api.ProfileApi
+import akibaroom.feature.social.api.SocialApi
+import akibaroom.feature.store.api.StoreApi
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.google.firebase.firestore.AggregateSource
-import com.google.firebase.firestore.FirebaseFirestore
 import com.quetzapps.akibaroom.compose.CollectorRoot
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -19,6 +22,11 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject lateinit var themePrefs: ThemePreferencesRepository
+    @Inject lateinit var authApi: AuthApi
+    @Inject lateinit var collectionApi: CollectionApi
+    @Inject lateinit var profileApi: ProfileApi
+    @Inject lateinit var socialApi: SocialApi
+    @Inject lateinit var storeApi: StoreApi
     @Inject lateinit var figuresApi: FiguresApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +39,14 @@ class MainActivity : ComponentActivity() {
                 ThemePreference.DARK -> true
             }
             CollectorTheme(useDarkTheme = useDark) {
-                CollectorRoot(figuresApi = figuresApi)
+                CollectorRoot(
+                    authApi = authApi,
+                    collectionApi = collectionApi,
+                    profileApi = profileApi,
+                    socialApi = socialApi,
+                    storeApi = storeApi,
+                    figuresApi = figuresApi
+                )
             }
         }
     }

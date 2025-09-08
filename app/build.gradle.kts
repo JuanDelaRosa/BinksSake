@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.quetzapps.akibaroom"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.quetzapps.akibaroom"
@@ -44,13 +44,29 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:datastore"))
+    implementation(project(":core:database"))
+    implementation(project(":core:ui"))
+    implementation(project(":core:utils"))
+
+    implementation(project(":features:auth-api"))
+    implementation(project(":features:auth"))
+    implementation(project(":features:collection-api"))
+    implementation(project(":features:collection"))
+    implementation(project(":features:figures-api"))
+    implementation(project(":features:figures"))
+    implementation(project(":features:profile-api"))
+    implementation(project(":features:profile"))
+    implementation(project(":features:social-api"))
+    implementation(project(":features:social"))
+    implementation(project(":features:store-api"))
+    implementation(project(":features:store"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.material3)
     implementation(libs.android.material)
-    implementation(project(":core:utils"))
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
@@ -62,11 +78,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
-    implementation(project(":core:ui"))
-    implementation(project(":features:figures-api"))
-    implementation(project(":features:figures"))
-    implementation(project(":core:datastore"))
-    implementation(project(":core:database"))
     implementation(libs.androidx.paging.runtime)
 }
 

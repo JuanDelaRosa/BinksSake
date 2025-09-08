@@ -1,6 +1,6 @@
-package akibaroom.features.social.di
+package akibaroom.feature.social.di
 
-import akibaroom.features.social.api.SocialApi
+import akibaroom.feature.social.api.SocialApi
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

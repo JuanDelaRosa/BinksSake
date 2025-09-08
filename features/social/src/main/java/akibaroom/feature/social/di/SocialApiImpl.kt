@@ -1,10 +1,10 @@
-package akibaroom.features.social.di
+package akibaroom.feature.social.di
 
-import akibaroom.features.social.api.SocialApi
+import akibaroom.feature.social.api.SocialApi
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
-import akibaroom.features.social.ui.SocialViewModel
-import akibaroom.features.social.ui.navigation.SocialNavigation
+import akibaroom.feature.social.ui.SocialViewModel
+import akibaroom.feature.social.ui.navigation.SocialNavigation
 import javax.inject.Inject
 
 class SocialApiImpl @Inject constructor() : SocialApi {

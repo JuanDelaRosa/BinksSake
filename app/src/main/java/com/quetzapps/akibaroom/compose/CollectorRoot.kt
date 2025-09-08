@@ -1,6 +1,11 @@
 package com.quetzapps.akibaroom.compose
 
+import akibaroom.feature.auth.api.AuthApi
+import akibaroom.feature.collection.api.CollectionApi
 import akibaroom.feature.figures.api.FiguresApi
+import akibaroom.feature.profile.api.ProfileApi
+import akibaroom.feature.social.api.SocialApi
+import akibaroom.feature.store.api.StoreApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -22,7 +27,14 @@ import androidx.navigation.navDeepLink
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CollectorRoot(figuresApi: FiguresApi) {
+fun CollectorRoot(
+    figuresApi: FiguresApi,
+    authApi: AuthApi,
+    collectionApi: CollectionApi,
+    profileApi: ProfileApi,
+    socialApi: SocialApi,
+    storeApi: StoreApi
+) {
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
@@ -48,7 +60,7 @@ fun CollectorRoot(figuresApi: FiguresApi) {
         Box(modifier = Modifier.padding(paddingValues)) {
             NavHost(navController = navController, startDestination = "collection") {
                 composable("collection") { figuresApi.Content() }
-                composable("profile") { ProfileFlowScreen(onClose = { navController.popBackStack() }) }
+                composable("profile") { profileApi.Content() }
                 composable(
                     route = "figure/{id}",
                     deepLinks = listOf(
@@ -58,9 +70,4 @@ fun CollectorRoot(figuresApi: FiguresApi) {
             }
         }
     }
-}
-
-@Composable
-private fun ProfileFlowScreen(onClose: () -> Unit) {
-    Text(text = "Profile flow placeholder")
 }

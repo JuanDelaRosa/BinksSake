@@ -1,4 +1,4 @@
-package akibaroom.features.social.ui.navigation
+package akibaroom.feature.social.ui.navigation
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -10,7 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import akibaroom.core.ui.compose.FeatureNavigation
 import akibaroom.core.ui.navigation.navigateUpOrFinish
 import akibaroom.core.utils.extentions.requireActivity
-import akibaroom.features.social.ui.SocialViewModel
+import akibaroom.feature.social.ui.SocialViewModel
 
 @Composable
 internal fun SocialNavigation(

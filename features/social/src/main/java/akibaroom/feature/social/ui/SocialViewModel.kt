@@ -1,9 +1,9 @@
-package akibaroom.features.social.ui
+package akibaroom.feature.social.ui
 
 import akibaroom.core.ui.viewmodel.MviViewModel
-import akibaroom.features.social.ui.SocialViewModel.Action
-import akibaroom.features.social.ui.SocialViewModel.ViewEffect
-import akibaroom.features.social.ui.SocialViewModel.ViewState
+import akibaroom.feature.social.ui.SocialViewModel.Action
+import akibaroom.feature.social.ui.SocialViewModel.ViewEffect
+import akibaroom.feature.social.ui.SocialViewModel.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
