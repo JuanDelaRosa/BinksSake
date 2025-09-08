@@ -1,6 +1,6 @@
-package akibaroom.feature.profile.di
+package akibaroom.feature.collection.di
 
-import akibaroom.feature.profile.api.ProfileApi
+import akibaroom.feature.collection.api.CollectionApi
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -9,9 +9,9 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class ProfileApiModule {
+abstract class CollectionApiModule {
 
     @Binds
     @Singleton
-    abstract fun bindFiguresApi(impl: ProfileApiImpl): ProfileApi
+    abstract fun bindFiguresApi(impl: CollectionApiImpl): CollectionApi
 }

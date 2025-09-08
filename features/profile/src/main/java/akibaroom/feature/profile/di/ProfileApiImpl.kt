@@ -1,6 +1,6 @@
 package akibaroom.feature.profile.di
 
-import akibaroom.features.profile.api.ProfileApi
+import akibaroom.feature.profile.api.ProfileApi
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import akibaroom.feature.profile.ui.ProfileViewModel
