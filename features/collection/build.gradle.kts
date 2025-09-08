@@ -23,6 +23,7 @@ dependencies {
     implementation(project(":core:utils"))
     implementation(project(":core:network"))
     implementation(project(":core:database"))
+    implementation(project(":features:collection-api"))
     implementation(libs.retrofit.core)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)

@@ -21,9 +21,9 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:utils"))
-    implementation(project(":features:figures-api"))
     implementation(project(":core:network"))
     implementation(project(":core:database"))
+    implementation(project(":features:figures-api"))
     implementation(libs.retrofit.core)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
