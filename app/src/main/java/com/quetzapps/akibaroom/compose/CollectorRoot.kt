@@ -60,7 +60,7 @@ fun CollectorRoot(
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
-    val showBars = currentRoute !in setOf("profile", "add")
+    val showBars = currentRoute !in setOf(Profile.route, Search.route)
 
     Scaffold { innerPadding ->
         Box(modifier = Modifier
@@ -70,25 +70,26 @@ fun CollectorRoot(
             Column {
                 if (showBars) {
                     val currentTop = when (currentRoute) {
-                        "discover" -> "Discover"
-                        "wishlist" -> "Wishlist"
-                        "favorite" -> "Favorite"
-                        "store" -> "Store"
+                        Discover.route -> "Discover"
+                        Collection.route -> "Collection"
+                        Social.route -> "Social"
+                        Search.route -> "Search"
+                        Profile.route -> "Profile"
                         else -> "Figy"
                     }
                     Column(modifier = Modifier.fillMaxWidth()) {
                         CustomTopBar(
                             title = currentTop,
-                            onIconClick = { navController.navigateSafe("profile") }
+                            onIconClick = { navController.navigateSafe(Profile.route) }
                         )
                     }
                 }
                 NavHost(navController = navController, startDestination = "discover") {
-                    composable("discover") { figuresApi.Content() }
-                    composable("wishlist") { authApi.Content() }
-                    composable("favorite") { socialApi.Content() }
-                    composable("store") { storeApi.Content() }
+                    composable("discover") { collectionApi.ContentDiscover() }
+                    composable("social") { socialApi.Content() }
+                    composable("collection") { collectionApi.ContentCollection() }
                     composable("profile") { profileApi.Content() }
+                    composable("search") { collectionApi.ContentSearch() }
                     composable(
                         route = "figure/{id}",
                         deepLinks = listOf(
@@ -105,23 +106,23 @@ fun CollectorRoot(
                             BottomNavItem(
                                 label = "Discover",
                                 icon = Icons.Default.Place,
-                                isSelected = currentRoute == "discover",
-                                onClick = { navController.navigateSafe("discover") }
+                                isSelected = currentRoute == Discover.route,
+                                onClick = { navController.navigateSafe(Discover.route) }
                             ),
                             BottomNavItem(
                                 label = "Social",
                                 icon = Icons.Default.Person,
-                                isSelected = currentRoute == "favorite",
-                                onClick = { navController.navigateSafe("favorite") }
+                                isSelected = currentRoute == Social.route,
+                                onClick = { navController.navigateSafe(Social.route) }
                             ),
                             BottomNavItem(
                                 label = "Collection",
                                 icon = Icons.Default.Home,
-                                isSelected = currentRoute == "wishlist",
-                                onClick = { navController.navigateSafe("wishlist") }
+                                isSelected = currentRoute == Collection.route,
+                                onClick = { navController.navigateSafe(Collection.route) }
                             ),
                         ),
-                        onSearch = { navController.navigateSafe("store") }
+                        onSearch = { navController.navigateSafe(Search.route) }
                     )
                 }
             }

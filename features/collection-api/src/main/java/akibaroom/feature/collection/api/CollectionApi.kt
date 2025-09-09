@@ -4,5 +4,11 @@ import androidx.compose.runtime.Composable
 
 interface CollectionApi {
     @Composable
-    fun Content()
+    fun ContentDiscover()
+    @Composable
+    fun ContentCollection()
+    @Composable
+    fun ContentWishList()
+    @Composable
+    fun ContentSearch()
 }

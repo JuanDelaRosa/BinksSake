@@ -8,12 +8,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import akibaroom.core.ui.compose.FeatureNavigation
+import akibaroom.core.ui.compose.NavRoute
 import akibaroom.core.ui.navigation.navigateUpOrFinish
 import akibaroom.core.utils.extentions.requireActivity
 import akibaroom.feature.collection.ui.CollectionViewModel
 
 @Composable
 internal fun CollectionNavigation(
+    startDestination: NavRoute = Discover,
     viewModel: CollectionViewModel
 ) {
     val navController = rememberNavController()
@@ -32,11 +34,23 @@ internal fun CollectionNavigation(
 
     FeatureNavigation(
         navController = navController,
-        startDestination = "collection",
+        startDestination = startDestination.route,
     ) {
-        composable("collection") {
+        composable(Discover.route) {
+            // Placeholder Collection Screen
+            Text("Discover Screen - Coming Soon")
+        }
+        composable(Collection.route) {
             // Placeholder Collection Screen
             Text("Collection Screen - Coming Soon")
+        }
+        composable(WishList.route) {
+            // Placeholder Collection Screen
+            Text("WishList Screen - Coming Soon")
+        }
+        composable(Search.route) {
+            // Placeholder Collection Screen
+            Text("Search Screen - Coming Soon")
         }
     }
 }
