@@ -1,7 +1,7 @@
 package akibaroom.feature.figures.ui.compose
 
+import akibaroom.core.domain.model.Figure
 import akibaroom.core.ui.compose.AsyncImage
-import akibaroom.feature.figures.domain.model.Figure
 import akibaroom.feature.figures.ui.FigureViewModel
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column

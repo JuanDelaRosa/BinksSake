@@ -1,9 +1,9 @@
 package akibaroom.feature.figures.data.paging
 
+import akibaroom.core.domain.model.Figure
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import akibaroom.core.network.models.Response
-import akibaroom.feature.figures.domain.model.Figure
 import akibaroom.feature.figures.domain.repository.FigureRepository
 
 class FiguresPagingSource(

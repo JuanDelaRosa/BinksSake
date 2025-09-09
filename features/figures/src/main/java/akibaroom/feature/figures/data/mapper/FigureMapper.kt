@@ -1,8 +1,8 @@
 package akibaroom.feature.figures.data.mapper
 
+import akibaroom.core.domain.model.Figure
 import akibaroom.core.network.DomainModelMapper
 import akibaroom.feature.figures.data.entity.FigurePageResponse
-import akibaroom.feature.figures.domain.model.Figure
 import akibaroom.feature.figures.domain.model.FigurePage
 import akibaroom.feature.figures.domain.model.PageInfo
 

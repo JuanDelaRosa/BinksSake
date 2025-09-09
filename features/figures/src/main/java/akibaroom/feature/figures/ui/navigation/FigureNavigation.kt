@@ -1,21 +1,18 @@
 package akibaroom.feature.figures.ui.navigation
 
-import android.content.Intent
-import androidx.browser.customtabs.CustomTabsIntent
+import akibaroom.core.ui.compose.FeatureNavigation
+import akibaroom.core.ui.navigation.navigateSafe
+import akibaroom.core.ui.navigation.navigateUpOrFinish
+import akibaroom.core.utils.extentions.requireActivity
+import akibaroom.feature.figures.ui.FigureViewModel
+import akibaroom.feature.figures.ui.compose.FigureDetailScreen
+import akibaroom.feature.figures.ui.compose.FiguresScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import akibaroom.core.ui.compose.FeatureNavigation
-import akibaroom.core.ui.navigation.navigateSafe
-import akibaroom.core.ui.navigation.navigateUpOrFinish
-import akibaroom.core.utils.extentions.requireActivity
-import akibaroom.feature.figures.ui.compose.FigureDetailScreen
-import akibaroom.feature.figures.ui.FigureViewModel
-import akibaroom.feature.figures.ui.compose.FiguresScreen
-import androidx.core.net.toUri
 import androidx.paging.compose.collectAsLazyPagingItems
 
 @Composable

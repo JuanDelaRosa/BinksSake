@@ -1,7 +1,7 @@
 package akibaroom.feature.figures.ui
 
+import akibaroom.core.domain.model.Figure
 import akibaroom.core.ui.viewmodel.MviViewModel
-import akibaroom.feature.figures.domain.model.Figure
 import akibaroom.feature.figures.domain.usecase.FetchFigureUseCase
 import akibaroom.feature.figures.ui.FigureViewModel.Action
 import akibaroom.feature.figures.ui.FigureViewModel.ViewEffect

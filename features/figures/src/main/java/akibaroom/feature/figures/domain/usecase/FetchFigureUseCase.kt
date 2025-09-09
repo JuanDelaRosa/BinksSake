@@ -1,11 +1,11 @@
 package akibaroom.feature.figures.domain.usecase
 
+import akibaroom.core.domain.model.Figure
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import akibaroom.feature.figures.data.paging.FiguresPagingSource
-import akibaroom.feature.figures.domain.model.Figure
 import akibaroom.feature.figures.domain.repository.FigureRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow

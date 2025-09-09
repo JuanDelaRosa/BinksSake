@@ -23,6 +23,7 @@ dependencies {
     implementation(project(":core:utils"))
     implementation(project(":core:network"))
     implementation(project(":core:database"))
+    implementation(project(":core:domain"))
     implementation(project(":features:figures-api"))
     implementation(libs.retrofit.core)
     implementation(libs.androidx.material3)

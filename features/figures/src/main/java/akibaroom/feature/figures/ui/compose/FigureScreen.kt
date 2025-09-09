@@ -1,34 +1,24 @@
 package akibaroom.feature.figures.ui.compose
 
-import akibaroom.core.ui.compose.BottomNavItem
-import akibaroom.core.ui.compose.CustomBottomNavBar
+import akibaroom.core.domain.model.Figure
 import akibaroom.core.ui.compose.ErrorAlertDialog
 import akibaroom.core.ui.theme.Typography
+import akibaroom.core.ui.theme.rememberCollectorWindowSize
 import akibaroom.feature.figures.R
-import akibaroom.feature.figures.domain.model.Figure
 import akibaroom.feature.figures.ui.FigureViewModel
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,14 +26,6 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.flowOf
-import akibaroom.core.ui.theme.rememberCollectorWindowSize
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.graphics.Color
 
 @Composable
 internal fun FiguresScreen(
