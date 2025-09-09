@@ -1,5 +1,6 @@
 package akibaroom.core.ui.compose
 
+import akibaroom.core.ui.theme.Typography
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -46,12 +47,12 @@ fun CustomBottomNavBar(
     onSearch: () -> Unit = {}
 ) {
     Row(
-        modifier = modifier.fillMaxWidth().padding(16.dp),
+        modifier = modifier.fillMaxWidth().padding(horizontal = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
             modifier = Modifier.background(
-                MaterialTheme.colorScheme.surface.copy(alpha = 0.8f), RoundedCornerShape(32.dp)
+                MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f), RoundedCornerShape(24.dp)
             ),
         ) {
             items.forEachIndexed { index, item ->
@@ -104,7 +105,7 @@ private fun BottomNavTab(
         modifier = modifier
             .clip(RoundedCornerShape(32.dp))
             .background(
-                if (item.isSelected) MaterialTheme.colorScheme.surface.copy(alpha = 0.8f) else Color.Transparent,
+                if (item.isSelected) MaterialTheme.colorScheme.surfaceContainer else Color.Transparent,
                 RoundedCornerShape(32.dp)
             )
             .clickable(
@@ -122,7 +123,7 @@ private fun BottomNavTab(
         )
         Text(
             text = item.label,
-            fontSize = 12.sp,
+            style = Typography.labelMedium,
             fontWeight = if (item.isSelected) FontWeight.Medium else FontWeight.Normal,
             color = if (item.isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary,
         )

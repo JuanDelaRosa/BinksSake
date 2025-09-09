@@ -1,9 +1,14 @@
 package akibaroom.core.ui.compose
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -15,11 +20,10 @@ fun FeatureNavigation(
     startDestination: String,
     routes: NavGraphBuilder.() -> Unit
 ) {
-    Scaffold { innerPadding ->
+    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).padding(horizontal = 16.dp)) {
         NavHost(
             navController = navController,
-            startDestination = startDestination,
-            modifier = Modifier.padding(innerPadding)
+            startDestination = startDestination
         ) {
             routes()
         }

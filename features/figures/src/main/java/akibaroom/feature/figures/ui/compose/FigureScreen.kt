@@ -3,6 +3,7 @@ package akibaroom.feature.figures.ui.compose
 import akibaroom.core.ui.compose.BottomNavItem
 import akibaroom.core.ui.compose.CustomBottomNavBar
 import akibaroom.core.ui.compose.ErrorAlertDialog
+import akibaroom.core.ui.theme.Typography
 import akibaroom.feature.figures.R
 import akibaroom.feature.figures.domain.model.Figure
 import akibaroom.feature.figures.ui.FigureViewModel
@@ -51,12 +52,12 @@ internal fun FiguresScreen(
     executeAction: (FigureViewModel.Action) -> Unit,
 ) {
     BackHandler { executeAction(FigureViewModel.Action.BackClicked) }
-    Box(modifier = Modifier.fillMaxSize().padding(horizontal = 8.dp)) {
+    Box(modifier = Modifier.fillMaxSize()) {
         val windowSize = rememberCollectorWindowSize()
         Column {
             Text(
                 text = "Recommendado para ti",
-                style = MaterialTheme.typography.headlineSmall,
+                style = Typography.headlineSmall,
             )
             LazyVerticalGrid(
                 modifier = Modifier.fillMaxSize(),

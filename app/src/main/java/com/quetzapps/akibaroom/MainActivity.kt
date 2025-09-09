@@ -12,8 +12,13 @@ import akibaroom.feature.store.api.StoreApi
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowInsetsControllerCompat
 import com.quetzapps.akibaroom.compose.CollectorRoot
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -39,6 +44,17 @@ class MainActivity : ComponentActivity() {
                 ThemePreference.DARK -> true
             }
             CollectorTheme(useDarkTheme = useDark) {
+                val view = LocalView.current
+                val primaryColor = MaterialTheme.colorScheme.primaryContainer.toArgb()
+                SideEffect {
+                    val window = (view.context as ComponentActivity).window
+                    window.statusBarColor = primaryColor
+
+                    WindowInsetsControllerCompat(window, window.decorView).apply {
+                        isAppearanceLightStatusBars = !useDark
+                    }
+                }
+
                 CollectorRoot(
                     authApi = authApi,
                     collectionApi = collectionApi,

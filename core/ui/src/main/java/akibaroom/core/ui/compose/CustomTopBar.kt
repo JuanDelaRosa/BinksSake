@@ -1,5 +1,6 @@
 package akibaroom.core.ui.compose
 
+import akibaroom.core.ui.theme.Typography
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -13,7 +14,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -31,12 +36,12 @@ fun CustomTopBar(
     onIconClick: () -> Unit = {}
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        modifier = Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.onPrimary).padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = title,
-            style = MaterialTheme.typography.headlineMedium,
+            style = Typography.headlineLarge,
         )
         Spacer(Modifier.weight(1f))
         ProfileButton(onIconClick = onIconClick)
@@ -64,7 +69,7 @@ private fun ProfileButton(onIconClick: () -> Unit = {}) {
         ) {
             Box(contentAlignment = Alignment.Center) {
                 Icon(
-                    imageVector = Icons.Default.Search,
+                    imageVector = Icons.Default.Person,
                     contentDescription = "",
                     Modifier.size(20.dp),
                     tint = MaterialTheme.colorScheme.surface,

@@ -63,18 +63,25 @@ fun CollectorRoot(
     val showBars = currentRoute !in setOf("profile", "add")
 
     Scaffold { innerPadding ->
-        Box(modifier = Modifier.background(MaterialTheme.colorScheme.background).padding(innerPadding)) {
+        Box(modifier = Modifier
+            .background(MaterialTheme.colorScheme.primaryContainer)
+            .padding(innerPadding)
+        ) {
             Column {
                 if (showBars) {
                     Column(modifier = Modifier.fillMaxWidth()) {
-                        CustomTopBar("Akihabara Room")
+                        CustomTopBar(
+                            title ="Figy",
+                            onIconClick = { navController.navigateSafe("profile") }
+                        )
                     }
                 }
-                NavHost(modifier = Modifier.fillMaxSize(), navController = navController, startDestination = "discover") {
+                NavHost(navController = navController, startDestination = "discover") {
                     composable("discover") { figuresApi.Content() }
                     composable("wishlist") { authApi.Content() }
                     composable("favorite") { socialApi.Content() }
                     composable("store") { storeApi.Content() }
+                    composable("profile") { profileApi.Content() }
                     composable(
                         route = "figure/{id}",
                         deepLinks = listOf(
@@ -107,7 +114,7 @@ fun CollectorRoot(
                                 onClick = { navController.navigateSafe("wishlist") }
                             ),
                         ),
-                        onSearch = { navController.navigateSafe("profile") }
+                        onSearch = { navController.navigateSafe("store") }
                     )
                 }
             }
