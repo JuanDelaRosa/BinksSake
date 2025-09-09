@@ -69,9 +69,16 @@ fun CollectorRoot(
         ) {
             Column {
                 if (showBars) {
+                    val currentTop = when (currentRoute) {
+                        "discover" -> "Discover"
+                        "wishlist" -> "Wishlist"
+                        "favorite" -> "Favorite"
+                        "store" -> "Store"
+                        else -> "Figy"
+                    }
                     Column(modifier = Modifier.fillMaxWidth()) {
                         CustomTopBar(
-                            title ="Figy",
+                            title = currentTop,
                             onIconClick = { navController.navigateSafe("profile") }
                         )
                     }

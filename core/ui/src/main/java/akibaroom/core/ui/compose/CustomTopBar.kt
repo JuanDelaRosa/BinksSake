@@ -19,6 +19,9 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
+import androidx.compose.material3.Divider
+import androidx.compose.material3.DividerDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -35,16 +38,26 @@ fun CustomTopBar(
     title: String,
     onIconClick: () -> Unit = {}
 ) {
-    Row(
-        modifier = Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.onPrimary).padding(8.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = title,
-            style = Typography.headlineLarge,
+    Column {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.onPrimary)
+                .padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = title,
+                style = Typography.headlineLarge,
+            )
+            Spacer(Modifier.weight(1f))
+            ProfileButton(onIconClick = onIconClick)
+        }
+        HorizontalDivider(
+            Modifier.background(MaterialTheme.colorScheme.primary),
+            DividerDefaults.Thickness,
+            MaterialTheme.colorScheme.primaryContainer
         )
-        Spacer(Modifier.weight(1f))
-        ProfileButton(onIconClick = onIconClick)
     }
 }
 

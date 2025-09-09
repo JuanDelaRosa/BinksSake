@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
@@ -47,7 +48,7 @@ fun CustomBottomNavBar(
     onSearch: () -> Unit = {}
 ) {
     Row(
-        modifier = modifier.fillMaxWidth().padding(horizontal = 8.dp),
+        modifier = modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
@@ -86,9 +87,9 @@ private fun SearchButton(onSearch: () -> Unit = {}) {
         ) {
             Box(contentAlignment = Alignment.Center) {
                 Icon(
-                    imageVector = Icons.Default.Search,
+                    imageVector = Icons.Default.Add,
                     contentDescription = "",
-                    Modifier.size(32.dp),
+                    Modifier.size(25.dp),
                     tint = MaterialTheme.colorScheme.surface,
                 )
             }

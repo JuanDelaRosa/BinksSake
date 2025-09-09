@@ -36,7 +36,7 @@ fun FigureItem(figure: Figure, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(4.dp)
+            .padding(8.dp)
             .clickable { onClick() },
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
@@ -44,12 +44,12 @@ fun FigureItem(figure: Figure, onClick: () -> Unit) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(1f)
+                .height(250.dp)
                 .clip(RoundedCornerShape(8.dp))
         ) {
             AsyncImage(
                 imageUrl = figure.image,
-                modifier = Modifier.fillMaxWidth().height(200.dp),
+                modifier = Modifier.fillMaxWidth().height(250.dp),
             )
             Box(
                 modifier = Modifier
@@ -60,7 +60,7 @@ fun FigureItem(figure: Figure, onClick: () -> Unit) {
                                 Color.Transparent,
                                 Color.Transparent,
                                 Color.Black.copy(alpha = 0.1f),
-                                Color.Black.copy(alpha = 0.4f),
+                                Color.Black.copy(alpha = 0.6f),
                             ),
                             startY = 0f,
                             endY = Float.POSITIVE_INFINITY
@@ -78,6 +78,13 @@ fun FigureItem(figure: Figure, onClick: () -> Unit) {
                     text = figure.name,
                     maxLines = 1,
                     style = Typography.labelLarge,
+                    color = Color.White,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Text(
+                    text = figure.name,
+                    maxLines = 1,
+                    style = Typography.labelSmall,
                     color = Color.White,
                     modifier = Modifier.fillMaxWidth()
                 )
