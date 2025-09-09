@@ -36,7 +36,13 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.flow.flowOf
 import akibaroom.core.ui.theme.rememberCollectorWindowSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.graphics.Color
 
 @Composable
 internal fun FiguresScreen(
@@ -45,59 +51,40 @@ internal fun FiguresScreen(
     executeAction: (FigureViewModel.Action) -> Unit,
 ) {
     BackHandler { executeAction(FigureViewModel.Action.BackClicked) }
-    Box(modifier = Modifier.fillMaxSize()) {
-        val density = LocalDensity.current
-        var bottomBarHeightPx by remember { mutableStateOf(0) }
+    Box(modifier = Modifier.fillMaxSize().padding(horizontal = 8.dp)) {
         val windowSize = rememberCollectorWindowSize()
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(windowSize.gridCellsFixed()),
-            contentPadding = PaddingValues(bottom = with(density) { bottomBarHeightPx.toDp() })
-        ) {
-            items(pagingFlow.itemCount) { index ->
-                val figure = pagingFlow[index]
-                if (figure != null) {
-                    FigureItem(
-                        figure = figure,
-                        onClick = { executeAction(FigureViewModel.Action.FigureSelected(index)) }
-                    )
+        Column {
+            Text(
+                text = "Recommendado para ti",
+                style = MaterialTheme.typography.headlineSmall,
+            )
+            LazyVerticalGrid(
+                modifier = Modifier.fillMaxSize(),
+                columns = GridCells.Fixed(windowSize.gridCellsFixed())
+            ) {
+                items(pagingFlow.itemCount) { index ->
+                    val figure = pagingFlow[index]
+                    if (figure != null) {
+                        FigureItem(
+                            figure = figure,
+                            onClick = { executeAction(FigureViewModel.Action.FigureSelected(index)) }
+                        )
+                    }
                 }
             }
         }
-        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-            CustomBottomNavBar(
-                showSearch = true,
-                items = listOf(
-                    BottomNavItem(
-                        label = "Collection",
-                        icon = Icons.Default.Home,
-                        isSelected = true
-                    ),
-                    BottomNavItem(
-                        label = "Wishlist",
-                        icon = Icons.Default.Star,
-                        isSelected = false
-                    ),
-                )
-            , modifier = Modifier.onGloballyPositioned { coordinates ->
-                    bottomBarHeightPx = coordinates.size.height
-                }
-            )
-        }
+
 
         if (state.isLoading) {
             CircularProgressIndicator(
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .size(24.dp),
+                modifier = Modifier.align(Alignment.Center).size(24.dp),
                 strokeWidth = 2.dp
             )
         }
         if (state.showError) {
             ErrorAlertDialog(
                 message = stringResource(id = R.string.error_generic),
-                onDismiss = {
-                    executeAction(FigureViewModel.Action.DismissError)
-                }
+                onDismiss = { executeAction(FigureViewModel.Action.DismissError) }
             )
         }
     }

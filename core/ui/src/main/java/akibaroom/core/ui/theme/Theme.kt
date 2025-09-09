@@ -95,14 +95,9 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun CollectorTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (useDarkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
         useDarkTheme -> DarkColorScheme
         else -> LightColorScheme
     }

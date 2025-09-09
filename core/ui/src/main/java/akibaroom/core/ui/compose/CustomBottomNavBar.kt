@@ -46,12 +46,12 @@ fun CustomBottomNavBar(
     onSearch: () -> Unit = {}
 ) {
     Row(
-        modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        modifier = modifier.fillMaxWidth().padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
             modifier = Modifier.background(
-                MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f), RoundedCornerShape(32.dp)
+                MaterialTheme.colorScheme.surface.copy(alpha = 0.8f), RoundedCornerShape(32.dp)
             ),
         ) {
             items.forEachIndexed { index, item ->
@@ -70,7 +70,7 @@ private fun SearchButton(onSearch: () -> Unit = {}) {
     Column(
         modifier = Modifier
             .background(
-                MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.1f), RoundedCornerShape(30.dp)
+                MaterialTheme.colorScheme.primary.copy(alpha = 0.8f), RoundedCornerShape(30.dp)
             )
     ) {
         Column(
@@ -88,7 +88,7 @@ private fun SearchButton(onSearch: () -> Unit = {}) {
                     imageVector = Icons.Default.Search,
                     contentDescription = "",
                     Modifier.size(32.dp),
-                    tint = MaterialTheme.colorScheme.secondary,
+                    tint = MaterialTheme.colorScheme.surface,
                 )
             }
         }
@@ -104,7 +104,7 @@ private fun BottomNavTab(
         modifier = modifier
             .clip(RoundedCornerShape(32.dp))
             .background(
-                if (item.isSelected) MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.1f) else Color.Transparent,
+                if (item.isSelected) MaterialTheme.colorScheme.surface.copy(alpha = 0.8f) else Color.Transparent,
                 RoundedCornerShape(32.dp)
             )
             .clickable(
@@ -118,13 +118,13 @@ private fun BottomNavTab(
             imageVector = item.icon,
             contentDescription = item.label,
             modifier = Modifier.size(28.dp),
-            tint = if (item.isSelected) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.secondary
+            tint = if (item.isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
         )
         Text(
             text = item.label,
             fontSize = 12.sp,
             fontWeight = if (item.isSelected) FontWeight.Medium else FontWeight.Normal,
-            color = if (item.isSelected) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.secondary,
+            color = if (item.isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary,
         )
     }
 }
