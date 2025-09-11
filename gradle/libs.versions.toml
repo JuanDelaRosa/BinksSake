@@ -1,3 +1,4 @@
+
 [versions]
 agp = "8.10.1"
 kotlin = "2.0.21"
@@ -32,6 +33,7 @@ kotest = "5.5.5"
 uiToolingPreview = "1.9.0"
 uiToolingVersion = "1.9.0"
 firebaseFirestoreKtx = "26.0.0"
+firebaseui = "9.0.0"
 appcompat = "1.7.1"
 
 [libraries]
@@ -67,6 +69,9 @@ firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.r
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database-ktx" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth-ktx" }
+firebaseui-auth = { group = "com.firebaseui", name = "firebase-ui-auth", version.ref = "firebaseui" }
 play-services-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutines" }
 
 # Hilt

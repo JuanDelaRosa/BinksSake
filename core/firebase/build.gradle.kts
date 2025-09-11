@@ -15,6 +15,26 @@ android {
 }
 
 dependencies {
+    // Firebase BOM
+    implementation(platform(libs.firebase.bom))
+    
+    // Firebase Auth
+    implementation(libs.firebase.auth)
+    
+    // Firebase Realtime Database
+    implementation(libs.firebase.database)
+    
+    // FirebaseUI Auth
+    implementation(libs.firebaseui.auth)
+    
+    // Coroutines for Firebase
+    implementation(libs.play.services.coroutines)
+    
+    // Hilt
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
+    
+    // Core dependencies
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.kotlinx.coroutines.android)
 }
