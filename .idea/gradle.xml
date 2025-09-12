@@ -14,13 +14,24 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/database" />
             <option value="$PROJECT_DIR$/core/datastore" />
+            <option value="$PROJECT_DIR$/core/domain" />
             <option value="$PROJECT_DIR$/core/firebase" />
             <option value="$PROJECT_DIR$/core/network" />
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/core/utils" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/auth" />
+            <option value="$PROJECT_DIR$/features/auth-api" />
+            <option value="$PROJECT_DIR$/features/collection" />
+            <option value="$PROJECT_DIR$/features/collection-api" />
             <option value="$PROJECT_DIR$/features/figures" />
             <option value="$PROJECT_DIR$/features/figures-api" />
+            <option value="$PROJECT_DIR$/features/profile" />
+            <option value="$PROJECT_DIR$/features/profile-api" />
+            <option value="$PROJECT_DIR$/features/social" />
+            <option value="$PROJECT_DIR$/features/social-api" />
+            <option value="$PROJECT_DIR$/features/store" />
+            <option value="$PROJECT_DIR$/features/store-api" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -1,5 +1,5 @@
-package akibaroom.feature.figures.ui.compose
-
+package akibaroom.feature.collection.detail.ui.compose
+/*
 import akibaroom.core.domain.model.Figure
 import akibaroom.core.ui.compose.AsyncImage
 import akibaroom.feature.figures.ui.FigureViewModel
@@ -51,3 +51,4 @@ private fun FigureDetailScreenPreview() {
     val sample = Figure(id = 1, name = "Rick", image = "")
     FigureDetailScreen(figure = sample, executeAction = {} )
 }
+*/

@@ -1,5 +1,6 @@
 package akibaroom.feature.collection.ui.navigation
 
+import akibaroom.core.ui.compose.CollectEffects
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -11,38 +12,51 @@ import akibaroom.core.ui.compose.FeatureNavigation
 import akibaroom.core.ui.compose.NavRoute
 import akibaroom.core.ui.navigation.navigateUpOrFinish
 import akibaroom.core.utils.extentions.requireActivity
-import akibaroom.feature.collection.ui.CollectionViewModel
+import akibaroom.feature.collection.collection.ui.compose.CollectionScreen
+import akibaroom.feature.collection.discover.ui.compose.DiscoverScreen
+import akibaroom.feature.collection.discover.ui.viewmodel.DiscoverViewModel
+import akibaroom.feature.collection.collection.ui.viewmodel.CollectionViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 internal fun CollectionNavigation(
-    startDestination: NavRoute = Discover,
-    viewModel: CollectionViewModel
+    startDestination: NavRoute = Discover
 ) {
     val navController = rememberNavController()
-    val state = viewModel.state.collectAsState().value
     val activity = LocalContext.current.requireActivity()
-
-    LaunchedEffect(Unit) {
-        viewModel.effects.collect { effect ->
-            when (effect) {
-                CollectionViewModel.ViewEffect.NavigateBack -> {
-                    navController.navigateUpOrFinish(activity)
-                }
-            }
-        }
-    }
-
     FeatureNavigation(
         navController = navController,
         startDestination = startDestination.route,
     ) {
         composable(Discover.route) {
-            // Placeholder Collection Screen
-            Text("Discover Screen - Coming Soon")
+            val viewModel: DiscoverViewModel = hiltViewModel()
+            CollectEffects(viewModel.effects) { effect ->
+                when (effect) {
+                    DiscoverViewModel.ViewEffect.NavigateBack -> {
+                        navController.navigateUpOrFinish(activity)
+                    }
+                    is DiscoverViewModel.ViewEffect.OpenFigureDetails -> TODO()
+                }
+            }
+            DiscoverScreen(
+                state = viewModel.state.collectAsStateWithLifecycle().value,
+                executeAction = viewModel::executeAction
+            )
         }
         composable(Collection.route) {
-            // Placeholder Collection Screen
-            Text("Collection Screen - Coming Soon")
+            val viewModel: CollectionViewModel = hiltViewModel()
+            CollectEffects(viewModel.effects) { effect ->
+                when (effect) {
+                    CollectionViewModel.ViewEffect.NavigateBack -> {
+                        navController.navigateUpOrFinish(activity)
+                    }
+                }
+            }
+            CollectionScreen(
+                state = viewModel.state.collectAsState().value,
+                executeAction = viewModel::executeAction
+            )
         }
         composable(WishList.route) {
             // Placeholder Collection Screen

@@ -1,5 +1,5 @@
 package akibaroom.feature.figures.ui.navigation
-
+/*
 import akibaroom.core.ui.compose.FeatureNavigation
 import akibaroom.core.ui.navigation.navigateSafe
 import akibaroom.core.ui.navigation.navigateUpOrFinish
@@ -65,3 +65,4 @@ internal fun FiguresNavigation(
         }
     }
 }
+*/

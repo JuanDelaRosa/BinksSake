@@ -1,9 +1,9 @@
-package akibaroom.feature.collection.ui
+package akibaroom.feature.collection.collection.ui.viewmodel
 
 import akibaroom.core.ui.viewmodel.MviViewModel
-import akibaroom.feature.collection.ui.CollectionViewModel.Action
-import akibaroom.feature.collection.ui.CollectionViewModel.ViewEffect
-import akibaroom.feature.collection.ui.CollectionViewModel.ViewState
+import akibaroom.feature.collection.collection.ui.viewmodel.CollectionViewModel.Action
+import akibaroom.feature.collection.collection.ui.viewmodel.CollectionViewModel.ViewEffect
+import akibaroom.feature.collection.collection.ui.viewmodel.CollectionViewModel.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -20,7 +20,7 @@ fun FeatureNavigation(
     startDestination: String,
     routes: NavGraphBuilder.() -> Unit
 ) {
-    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).padding(horizontal = 16.dp)) {
+    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
         NavHost(
             navController = navController,
             startDestination = startDestination

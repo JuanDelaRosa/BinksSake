@@ -2,6 +2,7 @@ package akibaroom.core.ui.compose
 
 import akibaroom.core.ui.theme.Typography
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -25,8 +26,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -68,32 +71,44 @@ fun CustomBottomNavBar(
 }
 
 @Composable
-private fun SearchButton(onSearch: () -> Unit = {}) {
-    Column(
-        modifier = Modifier
-            .background(
-                MaterialTheme.colorScheme.primary.copy(alpha = 0.8f), RoundedCornerShape(30.dp)
-            )
-    ) {
-        Column(
+fun SearchButton(onSearch: () -> Unit = {}) {
+    Box(contentAlignment = Alignment.Center) {
+        Box(
             modifier = Modifier
                 .clip(RoundedCornerShape(30.dp))
-                .clickable(
-                    interactionSource = remember { MutableInteractionSource() }
-                ) { onSearch() }
-                .padding(vertical = 12.dp, horizontal = 12.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Box(contentAlignment = Alignment.Center) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = "",
-                    Modifier.size(25.dp),
-                    tint = MaterialTheme.colorScheme.surface,
+                .background(
+                    brush = Brush.linearGradient(
+                        colors = listOf(
+                            MaterialTheme.colorScheme.primary.copy(alpha = 0.3f),
+                            MaterialTheme.colorScheme.primary.copy(alpha = 0.8f)
+                        )
+                    )
                 )
-            }
+                .border(
+                    width = 1.dp,
+                    color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.4f),
+                    shape = RoundedCornerShape(30.dp)
+                )
+                .blur(20.dp)
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null
+                ) { onSearch() }
+                .padding(vertical = 12.dp, horizontal = 12.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = "",
+                modifier = Modifier.size(25.dp),
+                tint = MaterialTheme.colorScheme.onPrimary
+            )
         }
+        Icon(
+            imageVector = Icons.Default.Add,
+            contentDescription = "",
+            modifier = Modifier.size(25.dp),
+            tint = MaterialTheme.colorScheme.onPrimary
+        )
     }
 }
 
