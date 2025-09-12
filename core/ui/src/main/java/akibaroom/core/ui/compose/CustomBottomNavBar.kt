@@ -54,13 +54,17 @@ fun CustomBottomNavBar(
         modifier = modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(
-            modifier = Modifier.background(
-                MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f), RoundedCornerShape(24.dp)
-            ),
-        ) {
-            items.forEachIndexed { index, item ->
-                BottomNavTab(item)
+        Box(contentAlignment = Alignment.Center) {
+            GlassBackground(
+                color = MaterialTheme.colorScheme.onPrimary,
+                isSelected = true,
+                cornerRadius = 24.dp
+            ) {
+                Row {
+                    items.forEachIndexed { index, item ->
+                        BottomNavTab(item)
+                    }
+                }
             }
         }
         if (showSearch) {
@@ -70,45 +74,32 @@ fun CustomBottomNavBar(
     }
 }
 
+
 @Composable
-fun SearchButton(onSearch: () -> Unit = {}) {
-    Box(contentAlignment = Alignment.Center) {
-        Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(30.dp))
-                .background(
-                    brush = Brush.linearGradient(
-                        colors = listOf(
-                            MaterialTheme.colorScheme.primary.copy(alpha = 0.3f),
-                            MaterialTheme.colorScheme.primary.copy(alpha = 0.8f)
-                        )
-                    )
-                )
-                .border(
-                    width = 1.dp,
-                    color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.4f),
-                    shape = RoundedCornerShape(30.dp)
-                )
-                .blur(20.dp)
-                .clickable(
-                    interactionSource = remember { MutableInteractionSource() },
-                    indication = null
-                ) { onSearch() }
-                .padding(vertical = 12.dp, horizontal = 12.dp)
+private fun SearchButton(onSearch: () -> Unit = {}) {
+    Box(
+        modifier = Modifier
+            .clickable(
+                onClick = onSearch,
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        GlassBackground(
+            color = MaterialTheme.colorScheme.primary,
+            isSelected = true,
+            cornerRadius = 30.dp
         ) {
-            Icon(
-                imageVector = Icons.Default.Add,
-                contentDescription = "",
-                modifier = Modifier.size(25.dp),
-                tint = MaterialTheme.colorScheme.onPrimary
-            )
+            Column(modifier = Modifier.padding(vertical = 12.dp, horizontal = 12.dp)) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = null,
+                    modifier = Modifier.size(25.dp),
+                    tint = MaterialTheme.colorScheme.surface
+                )
+            }
         }
-        Icon(
-            imageVector = Icons.Default.Add,
-            contentDescription = "",
-            modifier = Modifier.size(25.dp),
-            tint = MaterialTheme.colorScheme.onPrimary
-        )
     }
 }
 
@@ -117,32 +108,39 @@ private fun BottomNavTab(
     item: BottomNavItem,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier
-            .clip(RoundedCornerShape(32.dp))
-            .background(
-                if (item.isSelected) MaterialTheme.colorScheme.surfaceContainer else Color.Transparent,
-                RoundedCornerShape(32.dp)
-            )
+    Box(
+        modifier = Modifier
             .clickable(
-                interactionSource = remember { MutableInteractionSource() }
-            ) { item.onClick() }
-            .padding(vertical = 4.dp, horizontal = 24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+                onClick = item.onClick,
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null
+            ),
+        contentAlignment = Alignment.Center
     ) {
-        Icon(
-            imageVector = item.icon,
-            contentDescription = item.label,
-            modifier = Modifier.size(28.dp),
-            tint = if (item.isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
-        )
-        Text(
-            text = item.label,
-            style = Typography.labelMedium,
-            fontWeight = if (item.isSelected) FontWeight.Medium else FontWeight.Normal,
-            color = if (item.isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary,
-        )
+        GlassBackground(
+            color = MaterialTheme.colorScheme.secondary,
+            isSelected = item.isSelected,
+            cornerRadius = 32.dp
+        ) {
+            Column(
+                modifier = modifier.padding(vertical = 4.dp, horizontal = 24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+            ) {
+                Icon(
+                    imageVector = item.icon,
+                    contentDescription = item.label,
+                    modifier = Modifier.size(28.dp),
+                    tint = if (item.isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
+                )
+                Text(
+                    text = item.label,
+                    style = Typography.labelMedium,
+                    fontWeight = if (item.isSelected) FontWeight.Medium else FontWeight.Normal,
+                    color = if (item.isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary,
+                )
+            }
+        }
     }
 }
 
