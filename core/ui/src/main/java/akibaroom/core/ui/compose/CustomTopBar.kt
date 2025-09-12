@@ -43,7 +43,7 @@ fun CustomTopBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.onPrimary)
-                .padding(12.dp),
+                .padding(horizontal = 16.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
