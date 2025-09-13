@@ -54,7 +54,6 @@ class MainActivity : ComponentActivity() {
                         isAppearanceLightStatusBars = !useDark
                     }
                 }
-
                 CollectorRoot(
                     authApi = authApi,
                     collectionApi = collectionApi,

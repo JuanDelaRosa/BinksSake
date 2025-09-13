@@ -2,25 +2,20 @@ package akibaroom.feature.figures.ui
 
 import akibaroom.core.domain.model.Figure
 import akibaroom.core.ui.viewmodel.MviViewModel
-import akibaroom.feature.figures.domain.usecase.FetchFigureUseCase
 import akibaroom.feature.figures.ui.FigureViewModel.Action
 import akibaroom.feature.figures.ui.FigureViewModel.ViewEffect
 import akibaroom.feature.figures.ui.FigureViewModel.ViewState
-import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
 internal class FigureViewModel @Inject constructor(
-    private val fetchFigureUseCase: FetchFigureUseCase
+    //private val fetchFigureUseCase: FetchFigureUseCase
 ) : MviViewModel<ViewState, ViewEffect, Action>() {
 
-    val pagingFlow: Flow<PagingData<Figure>> =
-        fetchFigureUseCase.paging(viewModelScope).cachedIn(viewModelScope)
+    /*val pagingFlow: Flow<PagingData<Figure>> =
+        fetchFigureUseCase.paging(viewModelScope).cachedIn(viewModelScope)*/
 
     override fun handleAction(action: Action) = when (action) {
         Action.BackClicked -> _effects += ViewEffect.NavigateBack

@@ -24,7 +24,7 @@ internal fun SocialNavigation(
         viewModel.effects.collect { effect ->
             when (effect) {
                 SocialViewModel.ViewEffect.NavigateBack -> {
-                    navController.navigateUpOrFinish(activity)
+                    navController.navigateUpOrFinish()
                 }
             }
         }

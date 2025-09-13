@@ -1,24 +1,30 @@
-package akibaroom.feature.collection.ui.navigation
+package akibaroom.feature.collection.detail.ui.navigation
 
 import akibaroom.core.ui.compose.NavRoute
+import android.app.Activity
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
+import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 
-object Discover : NavRoute {
-    override val route = "discover"
-}
-
-object Collection : NavRoute {
-    override val route = "collection"
-}
-
-object WishList : NavRoute {
-    override val route = "wishlist"
-}
-
-object Search : NavRoute {
-    override val route = "search"
+fun NavGraphBuilder.figureDetailGraph(navController: NavController) {
+    composable(
+        route = FigureDetail.route,
+        arguments = FigureDetail.arguments()
+    ) { backStackEntry ->
+        val index = FigureDetail.extractIndex(backStackEntry)
+        //val figure = paging.itemSnapshotList.getOrNull(index)
+        /*if (figure == null) {
+            navController.popBackStack()
+        } else {
+            FigureDetailScreen(
+                figure = figure,
+                executeAction = viewModel::executeAction
+            )
+        }*/
+    }
 }
 
 object FigureDetail : NavRoute {

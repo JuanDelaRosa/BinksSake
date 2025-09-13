@@ -24,7 +24,7 @@ internal fun StoreNavigation(
         viewModel.effects.collect { effect ->
             when (effect) {
                 StoreViewModel.ViewEffect.NavigateBack -> {
-                    navController.navigateUpOrFinish(activity)
+                    navController.navigateUpOrFinish()
                 }
             }
         }

@@ -4,8 +4,7 @@ import akibaroom.core.domain.model.Figure
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import akibaroom.core.network.models.Response
-import akibaroom.feature.figures.domain.repository.FigureRepository
-
+/*
 class FiguresPagingSource(
     private val repository: FigureRepository
 ) : PagingSource<Int, Figure>() {
@@ -37,5 +36,5 @@ class FiguresPagingSource(
         }
     }
 }
-
+*/
 

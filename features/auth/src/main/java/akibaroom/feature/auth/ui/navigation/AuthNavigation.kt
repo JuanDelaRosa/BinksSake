@@ -24,7 +24,7 @@ internal fun AuthNavigation(
         viewModel.effects.collect { effect ->
             when (effect) {
                 AuthViewModel.ViewEffect.NavigateBack -> {
-                    navController.navigateUpOrFinish(activity)
+                    navController.navigateUpOrFinish()
                 }
             }
         }

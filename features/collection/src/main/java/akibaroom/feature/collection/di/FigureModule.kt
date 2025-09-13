@@ -1,8 +1,8 @@
-package akibaroom.feature.figures.di
+package akibaroom.feature.collection.di
 
-import akibaroom.feature.figures.domain.repository.FigureRepository
-import akibaroom.feature.figures.data.repository.FigureRepositoryImpl
-import akibaroom.feature.figures.domain.usecase.FetchFigureUseCase
+import akibaroom.feature.collection.discover.data.repository.FigureRepositoryImpl
+import akibaroom.feature.collection.discover.domain.repository.FigureRepository
+import akibaroom.feature.collection.discover.domain.usecase.FetchFigureUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,5 +22,3 @@ object FigureModule {
     fun provideFetchFigureUseCase(repository: FigureRepository): FetchFigureUseCase =
         FetchFigureUseCase(figureRepository = repository)
 }
-
-

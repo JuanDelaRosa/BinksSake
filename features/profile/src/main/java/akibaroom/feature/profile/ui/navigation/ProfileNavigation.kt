@@ -24,7 +24,7 @@ internal fun ProfileNavigation(
         viewModel.effects.collect { effect ->
             when (effect) {
                 ProfileViewModel.ViewEffect.NavigateBack -> {
-                    navController.navigateUpOrFinish(activity)
+                    navController.navigateUpOrFinish()
                 }
             }
         }
