@@ -1,8 +1,12 @@
 package akibaroom.feature.collection.detail.ui.navigation
 
+import akibaroom.core.ui.compose.CollectEffects
 import akibaroom.core.ui.compose.NavRoute
-import android.app.Activity
-import androidx.navigation.NavBackStackEntry
+import akibaroom.core.ui.navigation.navigateUpOrFinish
+import akibaroom.feature.collection.detail.ui.compose.FigureDetailScreen
+import akibaroom.feature.collection.detail.ui.viewmodel.FigureDetailViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -14,37 +18,35 @@ fun NavGraphBuilder.figureDetailGraph(navController: NavController) {
         route = FigureDetail.route,
         arguments = FigureDetail.arguments()
     ) { backStackEntry ->
-        val index = FigureDetail.extractIndex(backStackEntry)
-        //val figure = paging.itemSnapshotList.getOrNull(index)
-        /*if (figure == null) {
-            navController.popBackStack()
-        } else {
-            FigureDetailScreen(
-                figure = figure,
-                executeAction = viewModel::executeAction
-            )
-        }*/
+        val viewModel: FigureDetailViewModel = hiltViewModel(backStackEntry)
+        CollectEffects(viewModel.effects) { effect ->
+            when (effect) {
+                is FigureDetailViewModel.ViewEffect.NavigateBack -> {
+                    navController.navigateUpOrFinish()
+                }
+            }
+        }
+        FigureDetailScreen(
+            state = viewModel.state.collectAsStateWithLifecycle().value,
+            executeAction = viewModel::executeAction
+        )
     }
 }
 
 object FigureDetail : NavRoute {
-    private const val ARG_INDEX = "index"
+    const val ARG_UUID = "uuid"
     private const val BASE_ROUTE = "detail"
 
-    override val route = "$BASE_ROUTE/{$ARG_INDEX}"
+    override val route = "$BASE_ROUTE/{$ARG_UUID}"
 
     override fun arguments() = listOf(
-        navArgument(ARG_INDEX) {
-            type = NavType.IntType
+        navArgument(ARG_UUID) {
+            type = NavType.StringType
         }
     )
 
     override fun build(vararg args: Any?): String {
-        val index = args.getOrNull(0) ?: throw IllegalArgumentException("Index is required")
-        return "$BASE_ROUTE/$index"
-    }
-
-    fun extractIndex(backStackEntry: NavBackStackEntry): Int {
-        return backStackEntry.arguments?.getInt(ARG_INDEX) ?: -1
+        val uuid = args.getOrNull(0) ?: throw IllegalArgumentException("Uuid is required")
+        return "$BASE_ROUTE/$uuid"
     }
 }

@@ -3,10 +3,10 @@ package akibaroom.feature.collection.discover.domain.usecase
 import akibaroom.feature.collection.discover.domain.repository.FigureRepository
 import javax.inject.Inject
 
-class FetchFigureUseCase @Inject constructor(
+class FetchSectionsUseCase @Inject constructor(
     private val figureRepository: FigureRepository
 ) {
-    suspend operator fun invoke() = figureRepository.fetchFigures()
+    suspend operator fun invoke() = figureRepository.fetchSections()
    /* fun paging(scope: CoroutineScope, pageSize: Int = 20): Flow<PagingData<Figure>> =
         Pager(
             config = PagingConfig(pageSize = pageSize, enablePlaceholders = false),

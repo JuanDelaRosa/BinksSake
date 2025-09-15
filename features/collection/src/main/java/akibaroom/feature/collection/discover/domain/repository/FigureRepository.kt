@@ -9,5 +9,7 @@ interface FigureRepository {
         page: Int
     ): Response<FigurePage>*/
 
-    suspend fun fetchFigures(): Response<List<DiscoverSection>>
+    suspend fun fetchSections(): Response<List<DiscoverSection>>
+    suspend fun fetchFigureDetail(uuid: String): Response<Figure>
+    suspend fun searchFigures(query: String): Response<List<Figure>>
 }

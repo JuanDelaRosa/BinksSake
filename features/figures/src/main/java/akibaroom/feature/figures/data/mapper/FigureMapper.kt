@@ -18,7 +18,7 @@ class FigureMapper: DomainModelMapper<FigurePageResponse, FigurePage?> {
             ),
             results = entity.results.map {
                 Figure(
-                    id = it.id ?: 0,
+                    id = it.id ?: "",
                     name = it.name ?: "",
                     image = it.image ?: ""
                 )

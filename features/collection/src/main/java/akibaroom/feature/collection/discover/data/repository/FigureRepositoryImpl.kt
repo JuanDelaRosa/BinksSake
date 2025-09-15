@@ -10,9 +10,19 @@ class FigureRepositoryImpl(
     //private val service: FigureService = FigureServiceImpl(),
     //private val mapper: FigureMapper = FigureMapper()
 ): FigureRepository {
-    override suspend fun fetchFigures(): Response<List<DiscoverSection>> {
+    override suspend fun fetchSections(): Response<List<DiscoverSection>> {
         return Response.Success(FiguresMoke.sections)
     }
+
+    override suspend fun fetchFigureDetail(uuid: String): Response<Figure> {
+        return Response.Success(FiguresMoke.figures.first())
+    }
+
+    override suspend fun searchFigures(query: String): Response<List<Figure>> {
+        return Response.Success(FiguresMoke.figures)
+    }
+
+
     /*override suspend fun fetchFigures(page: Int) = when (val response = service.fetchFigures(page)) {
         is Response.Success -> {
             mapper.toModel(response.data)?.let {

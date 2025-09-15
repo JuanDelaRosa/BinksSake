@@ -1,6 +1,7 @@
 package akibaroom.core.ui.compose
 
 import akibaroom.core.ui.theme.Typography
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -23,6 +24,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -108,6 +110,16 @@ private fun BottomNavTab(
     item: BottomNavItem,
     modifier: Modifier = Modifier
 ) {
+    val targetColor = if (item.isSelected) {
+        MaterialTheme.colorScheme.primary
+    } else {
+        MaterialTheme.colorScheme.secondary
+    }
+    val animatedColor by animateColorAsState(
+        targetValue = targetColor,
+        label = "iconColor"
+    )
+
     Box(
         modifier = Modifier
             .clickable(
@@ -131,13 +143,13 @@ private fun BottomNavTab(
                     imageVector = item.icon,
                     contentDescription = item.label,
                     modifier = Modifier.size(28.dp),
-                    tint = if (item.isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
+                    tint = animatedColor
                 )
                 Text(
                     text = item.label,
                     style = Typography.labelMedium,
-                    fontWeight = if (item.isSelected) FontWeight.Medium else FontWeight.Normal,
-                    color = if (item.isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary,
+                    fontWeight = if (item.isSelected) FontWeight.Bold else FontWeight.Medium,
+                    color = animatedColor,
                 )
             }
         }

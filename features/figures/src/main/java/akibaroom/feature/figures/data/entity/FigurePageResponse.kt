@@ -16,7 +16,7 @@ data class PageInfoResponse(
 
 @Serializable
 data class FigureResponse(
-    val id: Int?,
+    val id: String?,
     val name: String?,
     val image: String?
 )

@@ -1,5 +1,7 @@
 package akibaroom.feature.collection.discover.ui.compose
 
+import akibaroom.core.ui.compose.SearchBarButton
+import akibaroom.core.ui.theme.Dimens
 import akibaroom.feature.collection.FiguresMoke
 import akibaroom.feature.collection.discover.ui.viewmodel.DiscoverViewModel.Action
 import akibaroom.feature.collection.discover.ui.viewmodel.DiscoverViewModel.ViewState
@@ -13,10 +15,8 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 
 @Composable
 internal fun DiscoverScreen(
@@ -25,10 +25,13 @@ internal fun DiscoverScreen(
 ) {
     BackHandler { executeAction(Action.BackClicked) }
     LazyColumn(
-        contentPadding = PaddingValues(bottom = 60.dp),
+        contentPadding = PaddingValues(bottom = Dimens.BottomNavbarHeight),
         modifier = Modifier.fillMaxWidth().wrapContentHeight()
     )
     {
+        item {
+            SearchBarButton("Search figures") { executeAction(Action.SearchClicked) }
+        }
         items(state.sections) { section ->
             FigureCarousel(
                 section.title,

@@ -1,15 +1,14 @@
 package akibaroom.feature.collection.di
 
 import akibaroom.feature.collection.api.CollectionApi
-import akibaroom.feature.collection.discover.ui.viewmodel.DiscoverViewModel
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import akibaroom.feature.collection.collection.ui.navigation.Collection
 import akibaroom.feature.collection.collection.ui.viewmodel.CollectionViewModel
+import akibaroom.feature.collection.discover.ui.navigation.Discover
+import akibaroom.feature.collection.search.ui.navigation.Search
 import akibaroom.feature.collection.ui.navigation.CollectionNavigation
-import akibaroom.feature.collection.ui.navigation.Collection
-import akibaroom.feature.collection.ui.navigation.Discover
-import akibaroom.feature.collection.ui.navigation.Search
-import akibaroom.feature.collection.ui.navigation.WishList
+import akibaroom.feature.collection.wishlist.ui.navigation.WishList
 import javax.inject.Inject
 
 class CollectionApiImpl @Inject constructor() : CollectionApi {
@@ -25,7 +24,6 @@ class CollectionApiImpl @Inject constructor() : CollectionApi {
 
     @Composable
     override fun ContentWishList() {
-        val viewModel: CollectionViewModel = hiltViewModel()
         CollectionNavigation(startDestination = WishList)
     }
 

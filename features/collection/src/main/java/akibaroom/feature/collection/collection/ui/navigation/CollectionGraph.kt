@@ -5,7 +5,6 @@ import akibaroom.core.ui.compose.NavRoute
 import akibaroom.core.ui.navigation.navigateUpOrFinish
 import akibaroom.feature.collection.collection.ui.compose.CollectionScreen
 import akibaroom.feature.collection.collection.ui.viewmodel.CollectionViewModel
-import android.app.Activity
 import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController

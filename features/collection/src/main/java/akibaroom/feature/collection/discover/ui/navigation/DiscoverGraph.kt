@@ -7,7 +7,6 @@ import akibaroom.core.ui.navigation.navigateUpOrFinish
 import akibaroom.feature.collection.detail.ui.navigation.FigureDetail
 import akibaroom.feature.collection.discover.ui.compose.DiscoverScreen
 import akibaroom.feature.collection.discover.ui.viewmodel.DiscoverViewModel
-import android.app.Activity
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
@@ -23,7 +22,10 @@ fun NavGraphBuilder.discoverGraph(navController: NavController) {
                     navController.navigateUpOrFinish()
                 }
                 is DiscoverViewModel.ViewEffect.OpenFigureDetails -> {
-                    navController.navigateSafe(FigureDetail.build(effect.figureId))
+                    navController.navigateSafe(FigureDetail.build(effect.figureUuid))
+                }
+                DiscoverViewModel.ViewEffect.NavigateToSearch -> {
+
                 }
             }
         }

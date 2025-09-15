@@ -89,7 +89,7 @@ fun FigureItemPreview() {
     Column(modifier = Modifier.fillMaxSize()) {
         FigureItem(
             figure = Figure(
-                id = 1,
+                id = "",
                 name = "Figure 1",
                 image = "https://picsum.photos/200"
             ),

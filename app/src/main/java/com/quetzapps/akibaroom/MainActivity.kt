@@ -3,6 +3,7 @@ package com.quetzapps.akibaroom
 import akibaroom.core.datastore.ThemePreference
 import akibaroom.core.datastore.ThemePreferencesRepository
 import akibaroom.core.ui.theme.CollectorTheme
+import akibaroom.core.utils.enviroment.AppContextProvider
 import akibaroom.feature.auth.api.AuthApi
 import akibaroom.feature.collection.api.CollectionApi
 import akibaroom.feature.figures.api.FiguresApi
@@ -36,6 +37,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppContextProvider.activity = this
         setContent {
             val theme by themePrefs.theme.collectAsState(initial = ThemePreference.SYSTEM)
             val useDark = when (theme) {
