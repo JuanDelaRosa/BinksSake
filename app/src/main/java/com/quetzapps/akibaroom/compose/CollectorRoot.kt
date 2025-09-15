@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -49,7 +48,7 @@ fun CollectorRoot(
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
-    val showBars = currentRoute !in setOf(Profile.route, Search.route, "figure/{id}")
+    val showBars = currentRoute !in setOf(Profile.route, collectionApi.searchRoute, "figure/{id}")
 
     Scaffold { innerPadding ->
         Box(modifier = Modifier
@@ -59,10 +58,10 @@ fun CollectorRoot(
             Column {
                 if (showBars) {
                     val currentTop = when (currentRoute) {
-                        Discover.route -> "Discover"
-                        Collection.route -> "Collection"
+                        collectionApi.discoverRoute -> "Discover"
+                        collectionApi.collectionRoute -> "Collection"
                         Social.route -> "Social"
-                        Search.route -> "Search"
+                        collectionApi.searchRoute -> "Search"
                         Profile.route -> "Profile"
                         else -> "Figy"
                     }
@@ -73,9 +72,9 @@ fun CollectorRoot(
                         )
                     }
                 }
-                NavHost(navController = navController, startDestination = "discover") {
+                NavHost(navController = navController, startDestination = collectionApi.discoverRoute) {
                     composable(
-                        route = Discover.route,
+                        route = collectionApi.discoverRoute,
                         enterTransition = {
                             fadeIn(animationSpec = tween(ANIMATION_DURATION))
                         },
@@ -93,7 +92,7 @@ fun CollectorRoot(
                         }
                     ) { socialApi.Content() }
                     composable(
-                        route = Collection.route,
+                        route = collectionApi.collectionRoute,
                         enterTransition = {
                             fadeIn(animationSpec = tween(ANIMATION_DURATION))
                         },
@@ -102,7 +101,7 @@ fun CollectorRoot(
                         }
                     ) { collectionApi.ContentCollection() }
                     composable(Profile.route) { profileApi.Content() }
-                    composable(Search.route) { collectionApi.ContentSearch() }
+                    composable(collectionApi.searchRoute) { collectionApi.ContentSearch() }
                     composable(
                         route = "figure/{id}",
                         deepLinks = listOf(
@@ -119,8 +118,8 @@ fun CollectorRoot(
                             BottomNavItem(
                                 label = "Discover",
                                 icon = Icons.Default.Search,
-                                isSelected = currentRoute == Discover.route,
-                                onClick = { navController.navigateSafe(Discover.route) }
+                                isSelected = currentRoute == collectionApi.discoverRoute,
+                                onClick = { navController.navigateSafe(collectionApi.discoverRoute) }
                             ),
                             BottomNavItem(
                                 label = "Social",
@@ -131,11 +130,11 @@ fun CollectorRoot(
                             BottomNavItem(
                                 label = "Collection",
                                 icon = Icons.Default.Home,
-                                isSelected = currentRoute == Collection.route,
-                                onClick = { navController.navigateSafe(Collection.route) }
+                                isSelected = currentRoute == collectionApi.collectionRoute,
+                                onClick = { navController.navigateSafe(collectionApi.collectionRoute) }
                             ),
                         ),
-                        onSearch = { navController.navigateSafe(Search.route) }
+                        onSearch = { navController.navigateSafe(collectionApi.searchRoute) }
                     )
                 }
             }

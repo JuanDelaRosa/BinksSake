@@ -12,6 +12,10 @@ import akibaroom.feature.collection.wishlist.ui.navigation.WishList
 import javax.inject.Inject
 
 class CollectionApiImpl @Inject constructor() : CollectionApi {
+    override val collectionRoute: String = "collection"
+    override val discoverRoute: String = "discover"
+    override val searchRoute: String = "search"
+
     @Composable
     override fun ContentDiscover() {
         CollectionNavigation(startDestination = Discover)
