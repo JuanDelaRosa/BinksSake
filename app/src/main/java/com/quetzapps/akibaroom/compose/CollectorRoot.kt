@@ -48,7 +48,7 @@ fun CollectorRoot(
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
-    val showBars = currentRoute !in setOf(Profile.route, collectionApi.searchRoute, "figure/{id}")
+    val showBars = currentRoute !in setOf(Profile.route, collectionApi.searchRoute, "detail/{uuid}")
 
     Scaffold { innerPadding ->
         Box(modifier = Modifier
@@ -73,41 +73,9 @@ fun CollectorRoot(
                     }
                 }
                 NavHost(navController = navController, startDestination = collectionApi.discoverRoute) {
-                    composable(
-                        route = collectionApi.discoverRoute,
-                        enterTransition = {
-                            fadeIn(animationSpec = tween(ANIMATION_DURATION))
-                        },
-                        exitTransition = {
-                            fadeOut(animationSpec = tween(ANIMATION_DURATION))
-                        }
-                    ) { collectionApi.ContentDiscover() }
-                    composable(
-                        route = Social.route,
-                        enterTransition = {
-                            fadeIn(animationSpec = tween(ANIMATION_DURATION))
-                        },
-                        exitTransition = {
-                            fadeOut(animationSpec = tween(ANIMATION_DURATION))
-                        }
-                    ) { socialApi.Content() }
-                    composable(
-                        route = collectionApi.collectionRoute,
-                        enterTransition = {
-                            fadeIn(animationSpec = tween(ANIMATION_DURATION))
-                        },
-                        exitTransition = {
-                            fadeOut(animationSpec = tween(ANIMATION_DURATION))
-                        }
-                    ) { collectionApi.ContentCollection() }
+                    collectionApi.registerGraph(navController, this)
                     composable(Profile.route) { profileApi.Content() }
-                    composable(collectionApi.searchRoute) { collectionApi.ContentSearch() }
-                    composable(
-                        route = "figure/{id}",
-                        deepLinks = listOf(
-                            navDeepLink { uriPattern = "app://akibaroom/figure/{id}" }
-                        )
-                    ) { /* detail screen placeholder */ }
+                    composable(Social.route) { socialApi.Content() }
                 }
             }
             if (showBars) {
@@ -141,5 +109,3 @@ fun CollectorRoot(
         }
     }
 }
-
-private const val ANIMATION_DURATION = 300

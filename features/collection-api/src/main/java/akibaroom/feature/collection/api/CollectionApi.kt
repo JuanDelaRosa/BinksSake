@@ -1,18 +1,13 @@
 package akibaroom.feature.collection.api
 
-import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
 
 interface CollectionApi {
     val collectionRoute: String
     val discoverRoute: String
     val searchRoute: String
 
-    @Composable
-    fun ContentDiscover()
-    @Composable
-    fun ContentCollection()
-    @Composable
-    fun ContentWishList()
-    @Composable
-    fun ContentSearch()
+    /** Register this feature's navigation graph into the root NavHost. */
+    fun registerGraph(navController: NavController, builder: NavGraphBuilder)
 }

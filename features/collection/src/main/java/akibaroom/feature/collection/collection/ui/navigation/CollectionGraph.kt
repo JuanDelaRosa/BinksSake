@@ -16,9 +16,7 @@ fun NavGraphBuilder.collectionGraph(navController: NavController) {
         val viewModel: CollectionViewModel = hiltViewModel()
         CollectEffects(viewModel.effects) { effect ->
             when (effect) {
-                CollectionViewModel.ViewEffect.NavigateBack -> {
-                    navController.navigateUpOrFinish()
-                }
+                CollectionViewModel.ViewEffect.NavigateBack -> navController.navigateUpOrFinish()
             }
         }
         CollectionScreen(
