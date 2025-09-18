@@ -9,8 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 internal fun CollectionScreen (
     state: ViewState,
     executeAction: (Action) -> Unit
-){
-
+) {
 }
 
 @Preview

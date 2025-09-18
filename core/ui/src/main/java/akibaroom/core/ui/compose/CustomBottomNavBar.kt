@@ -52,7 +52,7 @@ fun CustomBottomNavBar(
     modifier: Modifier = Modifier,
     onSearch: () -> Unit = {}
 ) {
-    Row(
+    Row (
         modifier = modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

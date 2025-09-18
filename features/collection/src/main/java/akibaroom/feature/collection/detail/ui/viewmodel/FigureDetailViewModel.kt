@@ -61,7 +61,7 @@ internal class FigureDetailViewModel @Inject constructor(
     }
 
     data class ViewState(
-        val figure: Figure? = null,
+        val figure: FigureDetail? = null,
         val isLoading: Boolean = false
     )
 }

@@ -38,7 +38,7 @@ fun CustomTopBar(
     title: String,
     onIconClick: () -> Unit = {}
 ) {
-    Column {
+    Column(modifier =Modifier.fillMaxWidth()) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()

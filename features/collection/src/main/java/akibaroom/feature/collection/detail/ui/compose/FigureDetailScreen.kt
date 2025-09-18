@@ -31,7 +31,6 @@ internal fun FigureDetailScreen(
     executeAction: (Action) -> Unit,
 ) {
     BackHandler { executeAction(Action.BackClicked) }
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -43,13 +42,6 @@ internal fun FigureDetailScreen(
                     .verticalScroll(rememberScrollState())
                     .padding(16.dp)
             ) {
-                Text(
-                    text = figure.name,
-                    style = MaterialTheme.typography.headlineMedium
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
                 AsyncImage(
                     imageUrl = figure.image,
                     modifier = Modifier

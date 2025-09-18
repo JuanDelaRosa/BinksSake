@@ -65,12 +65,10 @@ fun CollectorRoot(
                         Profile.route -> "Profile"
                         else -> "Figy"
                     }
-                    Column(modifier = Modifier.fillMaxWidth()) {
-                        CustomTopBar(
-                            title = currentTop,
-                            onIconClick = { navController.navigateSafe(Profile.route) }
-                        )
-                    }
+                    CustomTopBar(
+                        title = currentTop,
+                        onIconClick = { navController.navigateSafe(Profile.route) }
+                    )
                 }
                 NavHost(navController = navController, startDestination = collectionApi.discoverRoute) {
                     collectionApi.registerGraph(navController, this)
@@ -79,32 +77,31 @@ fun CollectorRoot(
                 }
             }
             if (showBars) {
-                Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-                    CustomBottomNavBar(
-                        showSearch = true,
-                        items = listOf(
-                            BottomNavItem(
-                                label = "Discover",
-                                icon = Icons.Default.Search,
-                                isSelected = currentRoute == collectionApi.discoverRoute,
-                                onClick = { navController.navigateSafe(collectionApi.discoverRoute) }
-                            ),
-                            BottomNavItem(
-                                label = "Social",
-                                icon = Icons.Default.Person,
-                                isSelected = currentRoute == Social.route,
-                                onClick = { navController.navigateSafe(Social.route) }
-                            ),
-                            BottomNavItem(
-                                label = "Collection",
-                                icon = Icons.Default.Home,
-                                isSelected = currentRoute == collectionApi.collectionRoute,
-                                onClick = { navController.navigateSafe(collectionApi.collectionRoute) }
-                            ),
+                CustomBottomNavBar(
+                    modifier = Modifier.align(Alignment.BottomCenter),
+                    showSearch = true,
+                    items = listOf(
+                        BottomNavItem(
+                            label = "Discover",
+                            icon = Icons.Default.Search,
+                            isSelected = currentRoute == collectionApi.discoverRoute,
+                            onClick = { navController.navigateSafe(collectionApi.discoverRoute) }
                         ),
-                        onSearch = { navController.navigateSafe(collectionApi.searchRoute) }
-                    )
-                }
+                        BottomNavItem(
+                            label = "Social",
+                            icon = Icons.Default.Person,
+                            isSelected = currentRoute == Social.route,
+                            onClick = { navController.navigateSafe(Social.route) }
+                        ),
+                        BottomNavItem(
+                            label = "Collection",
+                            icon = Icons.Default.Home,
+                            isSelected = currentRoute == collectionApi.collectionRoute,
+                            onClick = { navController.navigateSafe(collectionApi.collectionRoute) }
+                        ),
+                    ),
+                    onSearch = { navController.navigateSafe(collectionApi.searchRoute) }
+                )
             }
         }
     }
