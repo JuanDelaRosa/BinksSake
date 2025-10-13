@@ -19,6 +19,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.quetzapps.akibaroom.compose.CollectorRoot
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,13 +48,14 @@ class MainActivity : ComponentActivity() {
             }
             CollectorTheme(useDarkTheme = useDark) {
                 val view = LocalView.current
-                val primaryColor = MaterialTheme.colorScheme.primaryContainer.toArgb()
                 SideEffect {
                     val window = (view.context as ComponentActivity).window
-                    window.statusBarColor = primaryColor
-
+                    WindowCompat.setDecorFitsSystemWindows(window, false)
+                    window.statusBarColor = android.graphics.Color.TRANSPARENT
+                    window.navigationBarColor = android.graphics.Color.TRANSPARENT
                     WindowInsetsControllerCompat(window, window.decorView).apply {
                         isAppearanceLightStatusBars = !useDark
+                        isAppearanceLightNavigationBars = !useDark
                     }
                 }
                 CollectorRoot(

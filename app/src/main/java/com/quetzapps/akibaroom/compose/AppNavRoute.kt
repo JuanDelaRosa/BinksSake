@@ -2,10 +2,10 @@ package com.quetzapps.akibaroom.compose
 
 import akibaroom.core.ui.compose.NavRoute
 
-object Social : NavRoute {
+object NavSocial : NavRoute {
     override val route = "social"
 }
 
-object Profile : NavRoute {
+object NavProfile : NavRoute {
     override val route = "profile"
 }

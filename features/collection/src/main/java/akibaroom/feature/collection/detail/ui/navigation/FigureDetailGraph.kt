@@ -15,8 +15,8 @@ import androidx.navigation.navArgument
 
 fun NavGraphBuilder.figureDetailGraph(navController: NavController) {
     composable(
-        route = FigureDetail.route,
-        arguments = FigureDetail.arguments()
+        route = NavFigureDetail.route,
+        arguments = NavFigureDetail.arguments()
     ) { backStackEntry ->
         val viewModel: FigureDetailViewModel = hiltViewModel(backStackEntry)
         CollectEffects(viewModel.effects) { effect ->
@@ -33,7 +33,7 @@ fun NavGraphBuilder.figureDetailGraph(navController: NavController) {
     }
 }
 
-object FigureDetail : NavRoute {
+object NavFigureDetail : NavRoute {
     const val ARG_UUID = "uuid"
     private const val BASE_ROUTE = "detail"
 

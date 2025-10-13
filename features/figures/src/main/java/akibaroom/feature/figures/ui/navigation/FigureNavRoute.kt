@@ -5,11 +5,11 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import akibaroom.core.ui.compose.NavRoute
 
-object ListOfFigures : NavRoute {
+object NavListOfFigures : NavRoute {
     override val route = "list"
 }
 
-object FigureDetail : NavRoute {
+object NavFigureDetail : NavRoute {
     private const val ARG_INDEX = "index"
     private const val BASE_ROUTE = "detail"
 

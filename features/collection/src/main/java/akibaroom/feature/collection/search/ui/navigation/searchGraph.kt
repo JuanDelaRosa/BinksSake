@@ -8,12 +8,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
 fun NavGraphBuilder.searchGraph(navController: NavController) {
-    composable(Search.route) {
+    composable(NavSearch.route) {
         // Placeholder Collection Screen
         Text("Search Screen - Coming Soon")
     }
 }
 
-object Search : NavRoute {
+object NavSearch : NavRoute {
     override val route = "search"
 }

@@ -3,6 +3,9 @@ package akibaroom.feature.collection.detail.ui.compose
 import akibaroom.core.domain.model.Figure
 import akibaroom.core.ui.compose.AsyncImage
 import akibaroom.core.ui.theme.Dimens
+import akibaroom.feature.collection.FiguresMoke
+import akibaroom.feature.collection.detail.domain.model.Character
+import akibaroom.feature.collection.detail.domain.model.FigureDetails
 import akibaroom.feature.collection.detail.ui.viewmodel.FigureDetailViewModel.Action
 import akibaroom.feature.collection.detail.ui.viewmodel.FigureDetailViewModel.ViewState
 import androidx.activity.compose.BackHandler
@@ -43,7 +46,7 @@ internal fun FigureDetailScreen(
                     .padding(16.dp)
             ) {
                 AsyncImage(
-                    imageUrl = figure.image,
+                    imageUrl = figure.imageUrl,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(200.dp),
@@ -52,10 +55,12 @@ internal fun FigureDetailScreen(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 repeat(20) {
-                    Text(
-                        text = figure.name,
-                        style = MaterialTheme.typography.headlineMedium
-                    )
+                    figure.name?.let { name ->
+                        Text(
+                            text = figure.name,
+                            style = MaterialTheme.typography.headlineMedium
+                        )
+                    }
                 }
                 Spacer(modifier = Modifier.height(Dimens.BottomNavbarHeight))
             }
@@ -75,8 +80,7 @@ internal fun FigureDetailScreen(
 @Preview
 @Composable
 private fun FigureDetailScreenPreview() {
-    val sample = Figure(id = "1", name = "Rick", image = "")
     FigureDetailScreen(state = ViewState(
-        figure = sample
+        figure = FiguresMoke.figureDetails
     ), executeAction = {} )
 }

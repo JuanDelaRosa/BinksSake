@@ -3,6 +3,7 @@ package akibaroom.feature.collection.discover.data.repository
 import akibaroom.core.domain.model.Figure
 import akibaroom.core.network.models.Response
 import akibaroom.feature.collection.FiguresMoke
+import akibaroom.feature.collection.detail.domain.model.FigureDetails
 import akibaroom.feature.collection.discover.domain.model.DiscoverSection
 import akibaroom.feature.collection.discover.domain.repository.FigureRepository
 
@@ -14,8 +15,8 @@ class FigureRepositoryImpl(
         return Response.Success(FiguresMoke.sections)
     }
 
-    override suspend fun fetchFigureDetail(uuid: String): Response<Figure> {
-        return Response.Success(FiguresMoke.figures.first())
+    override suspend fun fetchFigureDetail(uuid: String): Response<FigureDetails> {
+        return Response.Success(FiguresMoke.figureDetails)
     }
 
     override suspend fun searchFigures(query: String): Response<List<Figure>> {

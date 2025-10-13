@@ -4,7 +4,7 @@ import akibaroom.core.ui.compose.CollectEffects
 import akibaroom.core.ui.compose.NavRoute
 import akibaroom.core.ui.navigation.navigateSafe
 import akibaroom.core.ui.navigation.navigateUpOrFinish
-import akibaroom.feature.collection.detail.ui.navigation.FigureDetail
+import akibaroom.feature.collection.detail.ui.navigation.NavFigureDetail
 import akibaroom.feature.collection.discover.ui.compose.DiscoverScreen
 import akibaroom.feature.collection.discover.ui.viewmodel.DiscoverViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -14,7 +14,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
 fun NavGraphBuilder.discoverGraph(navController: NavController) {
-    composable(Discover.route) {
+    composable(NavDiscover.route) {
         val viewModel: DiscoverViewModel = hiltViewModel()
         CollectEffects(viewModel.effects) { effect ->
             when (effect) {
@@ -22,7 +22,7 @@ fun NavGraphBuilder.discoverGraph(navController: NavController) {
                     navController.navigateUpOrFinish()
                 }
                 is DiscoverViewModel.ViewEffect.OpenFigureDetails -> {
-                    navController.navigateSafe(FigureDetail.build(effect.figureUuid))
+                    navController.navigateSafe(NavFigureDetail.build(effect.figureUuid))
                 }
                 DiscoverViewModel.ViewEffect.NavigateToSearch -> {
 
@@ -36,6 +36,6 @@ fun NavGraphBuilder.discoverGraph(navController: NavController) {
     }
 }
 
-object Discover : NavRoute {
+object NavDiscover : NavRoute {
     override val route = "discover"
 }

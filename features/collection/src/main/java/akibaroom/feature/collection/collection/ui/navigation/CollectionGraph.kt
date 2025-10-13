@@ -12,7 +12,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
 fun NavGraphBuilder.collectionGraph(navController: NavController) {
-    composable(Collection.route) {
+    composable(NavCollection.route) {
         val viewModel: CollectionViewModel = hiltViewModel()
         CollectEffects(viewModel.effects) { effect ->
             when (effect) {
@@ -26,6 +26,6 @@ fun NavGraphBuilder.collectionGraph(navController: NavController) {
     }
 }
 
-object Collection : NavRoute {
+object NavCollection : NavRoute {
     override val route = "collection"
 }

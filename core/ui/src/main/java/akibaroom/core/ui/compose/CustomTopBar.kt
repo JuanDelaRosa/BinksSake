@@ -30,6 +30,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -38,26 +40,26 @@ fun CustomTopBar(
     title: String,
     onIconClick: () -> Unit = {}
 ) {
-    Column(modifier =Modifier.fillMaxWidth()) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.onPrimary)
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = title,
-                style = Typography.headlineLarge,
-            )
-            Spacer(Modifier.weight(1f))
-            ProfileButton(onIconClick = onIconClick)
-        }
-        HorizontalDivider(
-            Modifier.background(MaterialTheme.colorScheme.primary),
-            DividerDefaults.Thickness,
-            MaterialTheme.colorScheme.primaryContainer
+    val brush = Brush.verticalGradient(
+        colors = listOf(
+            MaterialTheme.colorScheme.background,
+            MaterialTheme.colorScheme.background,
+            Color.Transparent
         )
+    )
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(brush)
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = title,
+            style = Typography.headlineLarge,
+        )
+        Spacer(Modifier.weight(1f))
+        ProfileButton(onIconClick = onIconClick)
     }
 }
 

@@ -2,6 +2,7 @@ package akibaroom.feature.collection.discover.domain.repository
 
 import akibaroom.core.domain.model.Figure
 import akibaroom.core.network.models.Response
+import akibaroom.feature.collection.detail.domain.model.FigureDetails
 import akibaroom.feature.collection.discover.domain.model.DiscoverSection
 
 interface FigureRepository {
@@ -10,6 +11,6 @@ interface FigureRepository {
     ): Response<FigurePage>*/
 
     suspend fun fetchSections(): Response<List<DiscoverSection>>
-    suspend fun fetchFigureDetail(uuid: String): Response<Figure>
+    suspend fun fetchFigureDetail(uuid: String): Response<FigureDetails>
     suspend fun searchFigures(query: String): Response<List<Figure>>
 }

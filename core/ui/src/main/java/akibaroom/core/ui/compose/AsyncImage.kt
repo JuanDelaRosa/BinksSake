@@ -19,7 +19,7 @@ import coil.request.ImageRequest
 
 @Composable
 fun AsyncImage(
-    imageUrl: String,
+    imageUrl: String?,
     modifier: Modifier = Modifier,
     contentDescription: String? = null,
 ) {

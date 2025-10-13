@@ -1,10 +1,10 @@
 package akibaroom.feature.collection.detail.ui.viewmodel
 
-import akibaroom.core.domain.model.Figure
 import akibaroom.core.network.models.Response
 import akibaroom.core.ui.viewmodel.MviViewModel
+import akibaroom.feature.collection.detail.domain.model.FigureDetails
 import akibaroom.feature.collection.detail.domain.usecase.FetchFigureDetailsUseCase
-import akibaroom.feature.collection.detail.ui.navigation.FigureDetail
+import akibaroom.feature.collection.detail.ui.navigation.NavFigureDetail
 import akibaroom.feature.collection.detail.ui.viewmodel.FigureDetailViewModel.Action
 import akibaroom.feature.collection.detail.ui.viewmodel.FigureDetailViewModel.ViewEffect
 import akibaroom.feature.collection.detail.ui.viewmodel.FigureDetailViewModel.ViewState
@@ -21,7 +21,7 @@ internal class FigureDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : MviViewModel<ViewState, ViewEffect, Action>() {
 
-    private val uuid: String = checkNotNull(savedStateHandle[FigureDetail.ARG_UUID])
+    private val uuid: String = checkNotNull(savedStateHandle[NavFigureDetail.ARG_UUID])
 
     init {
         fetchFigure()
@@ -61,7 +61,7 @@ internal class FigureDetailViewModel @Inject constructor(
     }
 
     data class ViewState(
-        val figure: FigureDetail? = null,
+        val figure: FigureDetails? = null,
         val isLoading: Boolean = false
     )
 }

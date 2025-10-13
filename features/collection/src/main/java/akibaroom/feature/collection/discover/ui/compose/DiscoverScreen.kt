@@ -1,6 +1,8 @@
 package akibaroom.feature.collection.discover.ui.compose
 
+import akibaroom.core.ui.compose.CustomTopBar
 import akibaroom.core.ui.compose.SearchBarButton
+import akibaroom.core.ui.navigation.navigateSafe
 import akibaroom.core.ui.theme.Dimens
 import akibaroom.feature.collection.FiguresMoke
 import akibaroom.feature.collection.discover.ui.viewmodel.DiscoverViewModel.Action
@@ -29,6 +31,12 @@ internal fun DiscoverScreen(
         modifier = Modifier.fillMaxWidth().wrapContentHeight()
     )
     {
+        stickyHeader {
+            CustomTopBar(
+                title = "Discover",
+                onIconClick = { executeAction(Action.BackClicked) }
+            )
+        }
         item {
             SearchBarButton("Search figures") { executeAction(Action.SearchClicked) }
         }

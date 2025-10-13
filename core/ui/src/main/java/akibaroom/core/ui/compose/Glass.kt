@@ -36,8 +36,16 @@ fun GlassBackground(
 
     val startColor1 = if (isSelected) color.copy(alpha = 0.2f) else Color.Transparent
     val startColor2 = if (isSelected) color.copy(alpha = 0.6f) else Color.Transparent
-    val animatedColor1 by animateColorAsState(targetValue = startColor1, label = "gradient1", animationSpec = animationSpec)
-    val animatedColor2 by animateColorAsState(targetValue = startColor2, label = "gradient2", animationSpec = animationSpec)
+    val animatedColor1 by animateColorAsState(
+        targetValue = startColor1,
+        label = "gradient1",
+        animationSpec = animationSpec
+    )
+    val animatedColor2 by animateColorAsState(
+        targetValue = startColor2,
+        label = "gradient2",
+        animationSpec = animationSpec
+    )
 
     val animatedBrush = Brush.verticalGradient(colors = listOf(animatedColor1, animatedColor2))
 

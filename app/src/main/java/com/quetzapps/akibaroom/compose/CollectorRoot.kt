@@ -10,14 +10,16 @@ import akibaroom.feature.figures.api.FiguresApi
 import akibaroom.feature.profile.api.ProfileApi
 import akibaroom.feature.social.api.SocialApi
 import akibaroom.feature.store.api.StoreApi
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.exclude
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
@@ -33,7 +35,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navDeepLink
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -48,32 +49,20 @@ fun CollectorRoot(
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
-    val showBars = currentRoute !in setOf(Profile.route, collectionApi.searchRoute, "detail/{uuid}")
+    val showBars = currentRoute !in setOf(NavProfile.route, collectionApi.searchRoute, "detail/{uuid}")
 
-    Scaffold { innerPadding ->
+    Scaffold(contentWindowInsets = WindowInsets.navigationBars
+        .only(WindowInsetsSides.Top)
+        .exclude(WindowInsets.statusBars)) { innerPadding ->
         Box(modifier = Modifier
             .background(MaterialTheme.colorScheme.primaryContainer)
             .padding(innerPadding)
         ) {
             Column {
-                if (showBars) {
-                    val currentTop = when (currentRoute) {
-                        collectionApi.discoverRoute -> "Discover"
-                        collectionApi.collectionRoute -> "Collection"
-                        Social.route -> "Social"
-                        collectionApi.searchRoute -> "Search"
-                        Profile.route -> "Profile"
-                        else -> "Figy"
-                    }
-                    CustomTopBar(
-                        title = currentTop,
-                        onIconClick = { navController.navigateSafe(Profile.route) }
-                    )
-                }
                 NavHost(navController = navController, startDestination = collectionApi.discoverRoute) {
                     collectionApi.registerGraph(navController, this)
-                    composable(Profile.route) { profileApi.Content() }
-                    composable(Social.route) { socialApi.Content() }
+                    composable(NavProfile.route) { profileApi.Content() }
+                    composable(NavSocial.route) { socialApi.Content() }
                 }
             }
             if (showBars) {
@@ -90,8 +79,8 @@ fun CollectorRoot(
                         BottomNavItem(
                             label = "Social",
                             icon = Icons.Default.Person,
-                            isSelected = currentRoute == Social.route,
-                            onClick = { navController.navigateSafe(Social.route) }
+                            isSelected = currentRoute == NavSocial.route,
+                            onClick = { navController.navigateSafe(NavSocial.route) }
                         ),
                         BottomNavItem(
                             label = "Collection",
