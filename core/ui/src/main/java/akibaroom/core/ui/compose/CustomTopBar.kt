@@ -9,9 +9,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
@@ -44,6 +47,8 @@ fun CustomTopBar(
         colors = listOf(
             MaterialTheme.colorScheme.background,
             MaterialTheme.colorScheme.background,
+            MaterialTheme.colorScheme.background,
+            MaterialTheme.colorScheme.background,
             Color.Transparent
         )
     )
@@ -51,7 +56,7 @@ fun CustomTopBar(
         modifier = Modifier
             .fillMaxWidth()
             .background(brush)
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .padding(start = 16.dp, end = 16.dp, top = 32.dp, bottom = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
