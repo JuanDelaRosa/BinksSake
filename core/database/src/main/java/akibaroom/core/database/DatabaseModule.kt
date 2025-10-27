@@ -2,6 +2,8 @@ package akibaroom.core.database
 
 import android.content.Context
 import androidx.room.Room
+import akibaroom.core.database.dao.FiguresDao
+import akibaroom.core.database.dao.RemoteKeysDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,6 +1,7 @@
 package akibaroom.feature.collection.ui.compose
 
 import akibaroom.core.domain.model.Figure
+import akibaroom.core.domain.model.FigureCategory
 import akibaroom.core.ui.compose.AsyncImage
 import akibaroom.core.ui.theme.Typography
 import androidx.compose.foundation.background
@@ -39,7 +40,7 @@ fun FigureItem(figure: Figure, onClick: () -> Unit) {
             modifier = Modifier.fillMaxSize()
         ) {
             AsyncImage(
-                imageUrl = figure.image,
+                imageUrl = figure.images.firstOrNull(),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize()
             )
@@ -73,7 +74,7 @@ fun FigureItem(figure: Figure, onClick: () -> Unit) {
                     color = Color.White,
                 )
                 Text(
-                    text = figure.name,
+                    text = figure.manufacturer,
                     maxLines = 1,
                     style = Typography.labelSmall,
                     color = Color.White,
@@ -91,7 +92,12 @@ fun FigureItemPreview() {
             figure = Figure(
                 id = "",
                 name = "Figure 1",
-                image = "https://picsum.photos/200"
+                manufacturer = "Good Smile Company",
+                series = "Test Series",
+                character = "Test Character",
+                category = FigureCategory.SCALE_FIGURE,
+                images = listOf("https://picsum.photos/200"),
+                uploadedBy = "system"
             ),
             onClick = {}
         )

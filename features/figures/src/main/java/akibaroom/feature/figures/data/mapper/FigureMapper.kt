@@ -1,6 +1,7 @@
 package akibaroom.feature.figures.data.mapper
 
 import akibaroom.core.domain.model.Figure
+import akibaroom.core.domain.model.FigureCategory
 import akibaroom.core.network.DomainModelMapper
 import akibaroom.feature.figures.data.entity.FigurePageResponse
 import akibaroom.feature.figures.domain.model.FigurePage
@@ -20,7 +21,12 @@ class FigureMapper: DomainModelMapper<FigurePageResponse, FigurePage?> {
                 Figure(
                     id = it.id ?: "",
                     name = it.name ?: "",
-                    image = it.image ?: ""
+                    manufacturer = "",
+                    series = "",
+                    character = "",
+                    category = FigureCategory.OTHER,
+                    images = listOfNotNull(it.image),
+                    uploadedBy = "system"
                 )
             }
         )

@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import akibaroom.core.database.converters.Converters
 import akibaroom.core.database.dao.FiguresDao
+import akibaroom.core.database.dao.RemoteKeysDao
 import akibaroom.core.database.dao.UserCollectionDao
 import akibaroom.core.database.entities.*
 

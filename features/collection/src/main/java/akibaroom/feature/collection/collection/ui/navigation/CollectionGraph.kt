@@ -17,10 +17,21 @@ fun NavGraphBuilder.collectionGraph(navController: NavController) {
         CollectEffects(viewModel.effects) { effect ->
             when (effect) {
                 CollectionViewModel.ViewEffect.NavigateBack -> navController.navigateUpOrFinish()
+                is CollectionViewModel.ViewEffect.NavigateToDetail -> {
+                    navController.navigate("figure_detail/${effect.figureId}")
+                }
+
+                is CollectionViewModel.ViewEffect.NavigateToStats -> {
+                    navController.navigate("collection_stats")
+                }
+
+                is CollectionViewModel.ViewEffect.ShareCollection -> {
+                }
             }
         }
         CollectionScreen(
             state = viewModel.state.collectAsState().value,
+            figuresPaging = viewModel.figuresPaging,
             executeAction = viewModel::executeAction
         )
     }
