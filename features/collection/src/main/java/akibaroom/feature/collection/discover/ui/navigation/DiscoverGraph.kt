@@ -14,7 +14,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
 fun NavGraphBuilder.discoverGraph(navController: NavController) {
-    composable(NavDiscover.route) {
+    composable(route = NavDiscover.route) {
         val viewModel: DiscoverViewModel = hiltViewModel()
         CollectEffects(viewModel.effects) { effect ->
             when (effect) {

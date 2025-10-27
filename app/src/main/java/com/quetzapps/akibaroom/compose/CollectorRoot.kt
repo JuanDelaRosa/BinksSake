@@ -10,6 +10,9 @@ import akibaroom.feature.figures.api.FiguresApi
 import akibaroom.feature.profile.api.ProfileApi
 import akibaroom.feature.social.api.SocialApi
 import akibaroom.feature.store.api.StoreApi
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -59,7 +62,30 @@ fun CollectorRoot(
             .padding(innerPadding)
         ) {
             Column {
-                NavHost(navController = navController, startDestination = collectionApi.discoverRoute) {
+                NavHost(
+                    navController = navController,
+                    startDestination = collectionApi.discoverRoute,
+                    enterTransition = {
+                        slideInHorizontally(
+                            animationSpec = tween(300),
+                            initialOffsetX = { it })
+                    },
+                    exitTransition = {
+                        slideOutHorizontally(
+                            animationSpec = tween(300),
+                            targetOffsetX = { -it })
+                    },
+                    popEnterTransition = {
+                        slideInHorizontally(
+                            animationSpec = tween(300),
+                            initialOffsetX = { -it })
+                    },
+                    popExitTransition = {
+                        slideOutHorizontally(
+                            animationSpec = tween(300),
+                            targetOffsetX = { it })
+                    }
+                ) {
                     collectionApi.registerGraph(navController, this)
                     composable(NavProfile.route) { profileApi.Content() }
                     composable(NavSocial.route) { socialApi.Content() }
