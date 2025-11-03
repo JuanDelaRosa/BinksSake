@@ -4,7 +4,7 @@ data class FigureDetails(
     val uuid: String,
     val name: String?,
     val description: String?,
-    val imageUrl: String?,
+    val imageUrl: List<String>?,
     val version: String?,
     val character: Character?,
 )

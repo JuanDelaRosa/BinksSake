@@ -54,7 +54,7 @@ object FiguresMoke {
     val figureDetails = FigureDetails(
         uuid = "1",
         name = "Figure 1",
-        imageUrl = "https://cdn.shopify.com/s/files/1/1039/4986/products/FR40070__1.jpg",
+        images = listOf("https://i.pinimg.com/736x/ca/c9/b0/cac9b00094f0a5ed8fd4b20af6c0d905.jpg"),
         description = "Description 1",
         version = "red",
         character = Character(
